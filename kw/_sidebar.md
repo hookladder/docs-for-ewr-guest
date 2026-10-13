@@ -1,0 +1,19 @@
+- **Pou koumansé**
+  - [Byenvini](/kw/)
+- **Travay chak jou**
+  - [Booking](/kw/bookings)
+  - [Mésaj pou desk-la](/kw/messages)
+  - [Sèjou (Stays)](/kw/stays)
+  - [Alèt](/kw/alerts)
+- **Kontni**
+  - [Aktivité épi évènman](/kw/experiences)
+  - [Manjé (mennou)](/kw/menus)
+  - [Òf](/kw/offers)
+  - [Chanm](/kw/rooms)
+  - [Resort Settings](/kw/resort-settings)
+  - [Foto épi dokiman](/kw/media)
+  - [Paj](/kw/pages)
+- **Èd**
+  - [Pwoblèm épi solisyon](/kw/troubleshooting)
+  - [Mo pou konnèt](/kw/glossary)
+  - [Sipò](/kw/support)

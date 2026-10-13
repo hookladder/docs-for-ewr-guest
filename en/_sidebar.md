@@ -1,0 +1,19 @@
+- **Getting started**
+  - [Welcome](/en/)
+- **Daily work**
+  - [Bookings](/en/bookings)
+  - [Desk messages](/en/messages)
+  - [Stays](/en/stays)
+  - [Alerts](/en/alerts)
+- **Content**
+  - [Experiences & events](/en/experiences)
+  - [Menus](/en/menus)
+  - [Offers](/en/offers)
+  - [Rooms](/en/rooms)
+  - [Resort Settings](/en/resort-settings)
+  - [Pictures & files](/en/media)
+  - [Pages](/en/pages)
+- **Help**
+  - [Problems & solutions](/en/troubleshooting)
+  - [Glossary](/en/glossary)
+  - [Support](/en/support)

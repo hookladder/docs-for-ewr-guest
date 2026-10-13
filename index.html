@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>East Winds Manager Manual</title>
+<meta name="description" content="How the East Winds team runs the guest app: bookings, messages, stays, experiences, menus, alerts and resort content.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4.13.1/lib/themes/vue.css">
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+<div id="app"></div>
+<script>
+	// Content lives in en/ and kw/ (one Markdown file per section, same file names in both).
+	window.$docsify = {
+		name: '<span class="star">✦</span> East Winds <span class="badge">Beta</span>',
+		nameLink: { '/kw/': '#/kw/', '/': '#/en/' },
+		homepage: 'en/README.md',
+		loadSidebar: true,
+		loadNavbar: true,
+		alias: {
+			'/.*/_navbar.md': '/_navbar.md',
+			'/_sidebar.md': '/en/_sidebar.md',
+		},
+		subMaxLevel: 2,
+		auto2top: true,
+		search: {
+			pathNamespaces: ['/en', '/kw'],
+			placeholder: { '/kw/': 'Chèché…', '/': 'Search…' },
+			noData: { '/kw/': 'Pa jwenn anyen.', '/': 'No results.' },
+			depth: 3,
+		},
+		plugins: [
+			// Docsify re-renders _navbar.md on every route, so the language switch is resolved on click:
+			// /en/stays <-> /kw/stays keeps the reader on the same section. <html lang> drives the active pill.
+			function (hook, vm) {
+				hook.doneEach(function () {
+					document.documentElement.lang = vm.route.path.indexOf('/kw/') === 0 ? 'acf' : 'en';
+				});
+				document.addEventListener('click', function (e) {
+					var a = e.target.closest('.app-nav a');
+					if (!a) return;
+					e.preventDefault();
+					var path = vm.route.path === '/' ? '/en/' : vm.route.path;
+					var lang = a.getAttribute('href').indexOf('/kw/') !== -1 ? '/kw/' : '/en/';
+					location.hash = '#' + path.replace(/^\/(en|kw)\//, lang);
+				}, true);
+			},
+		],
+	};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/docsify@4.13.1/lib/docsify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsify@4.13.1/lib/plugins/search.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsify@4.13.1/lib/plugins/zoom-image.min.js"></script>
+</body>
+</html>

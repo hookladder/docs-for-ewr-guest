@@ -1,0 +1,101 @@
+/* East Winds Manager Manual: guest-app design tokens on top of Docsify's vue.css. */
+:root {
+	--navy: #1A2B45;
+	--gold: #B89B5E;
+	--gold-light: #D4B97A;
+	--gold-surface: #FBF5E8;
+	--canvas: #F7F3EC;
+	--surface: #FFFFFF;
+	--alt: #EDE7DB;
+	--border: #E5DEC9;
+	--border-light: #EFE9DF;
+	--text: #2C2C2C;
+	--muted: #6B6B6B;
+	--teal: #3A7D74;
+	--serif: 'Playfair Display', Georgia, serif;
+	--sans: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+	--theme-color: var(--teal);
+}
+
+body { background: var(--canvas); color: var(--text); font-family: var(--sans); }
+
+/* Content */
+.markdown-section { max-width: 820px; padding: 40px 48px 80px; font-size: 16px; line-height: 1.7; }
+.markdown-section p, .markdown-section ul, .markdown-section ol { color: var(--text); margin: 0 0 18px; }
+.markdown-section li + li { margin-top: 6px; }
+.markdown-section a { color: var(--teal); }
+.markdown-section strong { color: var(--text); }
+.markdown-section em { color: inherit; }
+.markdown-section code { color: var(--navy); background: var(--alt); border-radius: 6px; padding: 0.1em 0.4em; font-size: 0.88em; }
+.markdown-section h1, .markdown-section h2, .markdown-section h3 { font-family: var(--serif); font-weight: 600; color: var(--navy); }
+.markdown-section h1 { font-size: 40px; margin-bottom: 16px; }
+.markdown-section h2 { font-size: 26px; margin: 56px 0 14px; padding: 0; border: 0; }
+.markdown-section h3 { font-size: 20px; margin: 36px 0 10px; }
+.markdown-section h1 a, .markdown-section h2 a, .markdown-section h3 a { color: inherit; }
+
+/* Sidebar and app name */
+.sidebar { background: var(--surface); border-right: 1px solid var(--border); padding-top: 0; }
+.sidebar > h1 { margin: 0; padding: 18px 20px; background: var(--navy); text-align: left; font: 600 19px var(--serif); }
+.sidebar > h1 a { color: #fff; }
+.sidebar .star { color: var(--gold-light); }
+.sidebar .badge { font: 700 11px var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); background: var(--gold-light); border-radius: 50px; padding: 3px 10px; vertical-align: middle; }
+.sidebar ul li a { color: var(--text); font-size: 15px; }
+.sidebar ul li.active > a { color: var(--navy); font-weight: 700; border-right: 3px solid var(--gold); background: var(--gold-surface); }
+.sidebar-nav > ul > li > strong, .sidebar-nav > ul > li > p > strong { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.sidebar-toggle { background: transparent; }
+.search { border-bottom: 1px solid var(--border-light); }
+.search input { font-family: var(--sans); }
+
+/* Language switch (navbar): a segmented pill; <html lang> marks the active option. */
+.app-nav { margin: 18px 40px 0 0; }
+.app-nav ul { display: inline-flex; gap: 2px; margin: 0; padding: 3px; border: 1px solid var(--border); border-radius: 50px; background: var(--surface); }
+.app-nav li { margin: 0; padding: 0; }
+.app-nav li a, .app-nav li a.active { display: block; padding: 5px 16px; border: 0 !important; border-radius: 50px; color: var(--navy); font-size: 14px; font-weight: 400; line-height: 1.4; background: none; }
+html[lang=en] .app-nav li:first-child a, html[lang=acf] .app-nav li:last-child a { background: var(--gold); color: var(--navy); font-weight: 700; }
+
+/* Numbered steps */
+.markdown-section ol { counter-reset: s; list-style: none; padding: 0; }
+.markdown-section ol > li { counter-increment: s; position: relative; padding: 2px 0 8px 44px; }
+.markdown-section ol > li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: #fff; font: 700 14px/30px var(--sans); text-align: center; }
+
+/* Tables */
+.markdown-section table { display: table; width: 100%; margin: 24px 0 32px; border: 1px solid var(--border); border-radius: 10px; border-collapse: separate; border-spacing: 0; overflow: hidden; background: var(--surface); font-size: 15px; }
+.markdown-section th { background: var(--canvas); color: var(--navy); text-align: left; }
+.markdown-section td, .markdown-section th { border: 0; border-bottom: 1px solid var(--border-light); padding: 10px 14px; vertical-align: top; }
+.markdown-section tr:nth-child(2n) { background: transparent; }
+.markdown-section tr:last-child td { border-bottom: 0; }
+
+/* Callouts. Docsify names them backwards: `!>` renders p.tip (warning), `?>` renders p.warn (note). */
+.markdown-section p.tip, .markdown-section p.warn { border-radius: 10px; padding: 16px 20px; margin: 28px 0; color: var(--text); }
+.markdown-section p.tip > strong:first-child, .markdown-section p.warn > strong:first-child { display: block; margin-bottom: 4px; color: var(--navy); }
+.markdown-section p.tip { background: #FBEDE8; border: 1px solid #EBC3B8; }
+.markdown-section p.tip::before { display: none; }
+.markdown-section p.tip > strong:first-child { color: #9B2C2C; }
+.markdown-section p.warn { background: #E4F1EA; border: 1px solid #BFDCCB; }
+
+/* Status pills */
+.pill { display: inline-block; font: 700 12px var(--sans); border-radius: 50px; padding: 2px 10px; white-space: nowrap; }
+.pill.pending { background: #FBF0DA; color: #B7791F; }
+.pill.confirmed { background: #E4F1EA; color: #2F7A5B; }
+.pill.declined { background: #F7E4E4; color: #9B2C2C; }
+
+/* Screenshots */
+.markdown-section figure { margin: 28px 0 36px; }
+.markdown-section figure img { display: block; max-width: 100%; margin: 0 auto; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); box-shadow: 0 6px 20px rgba(26,43,69,0.08); }
+.markdown-section figure.phone img { max-width: 340px; border-radius: 24px; }
+.markdown-section figcaption { margin-top: 8px; font-size: 14px; color: var(--muted); text-align: center; }
+
+/* Support card */
+.support-card { display: flex; gap: 20px; align-items: center; margin: 28px 0; padding: 24px; border-radius: 16px; background: var(--navy); }
+.support-card h3 { color: #fff !important; margin: 0 0 4px !important; font-size: 22px !important; }
+.support-card p { margin: 4px 0 !important; color: rgba(255,255,255,0.85) !important; }
+.support-card a.mail { display: inline-block; margin-top: 10px; padding: 10px 20px; border-radius: 50px; background: var(--gold); color: var(--navy); font-weight: 700; text-decoration: none; }
+.support-card .avatar { flex: none; width: 88px; height: 88px; border-radius: 50%; border: 3px solid var(--gold-light); object-fit: cover; }
+
+@media (max-width: 768px) {
+	.markdown-section { padding: 32px 16px 48px; }
+	.markdown-section h1 { font-size: 30px; }
+	.markdown-section h2 { font-size: 22px; margin-top: 40px; }
+	.app-nav { margin-right: 16px; }
+	.support-card { flex-direction: column; align-items: flex-start; }
+}
