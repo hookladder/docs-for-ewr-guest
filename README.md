@@ -20,7 +20,7 @@ Documentation for the East Winds Resort guest app (WordPress PWA), built by Hook
 │   ├── theme.css       Guest-app design tokens over Docsify's vue theme
 │   └── img/            Screenshots and images, shared by both languages
 ├── dev/context.md      Project context for developers
-├── CNAME               Custom domain for GitHub Pages (docs.eastwinds.com)
+├── CNAME               Custom domain for GitHub Pages (staffdocs.eastwinds.com)
 └── .nojekyll           Lets GitHub Pages serve files whose names start with "_"
 ```
 
@@ -38,7 +38,7 @@ Then open <http://localhost:8000>. Any static server works (`npx serve`, VS Code
 
 GitHub Pages serves `main` (*Settings → Pages → Deploy from a branch → `main` / root*). No build step is needed.
 
-- **Domain:** `docs.eastwinds.com`, set by the `CNAME` file. DNS lives in Cloudflare: a `CNAME` record `docs → hookladder.github.io` in **DNS only** mode (grey cloud), so GitHub can issue the HTTPS certificate.
+- **Domain:** `staffdocs.eastwinds.com`, set by the `CNAME` file. DNS lives in Cloudflare: a `CNAME` record `staffdocs → hookladder.github.io` in **DNS only** mode (grey cloud), so GitHub can issue the HTTPS certificate.
 - **Not indexed:** `index.html` carries `<meta name="robots" content="noindex, nofollow">`. The site is still public to anyone with the link.
 - **Branches:** `main` is the published version. Work happens on `new-version-incoming` and reaches `main` through a reviewed merge.
 
