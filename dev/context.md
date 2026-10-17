@@ -119,13 +119,14 @@ Notifications for new booking requests and guest messages are emailed to the fro
 | `hosts.php` | Hosts page, "Say hello" messaging, Desk Messages unread tracking |
 | `offer.php`, `shortcodes-extra.php` | Offers, menus, weather, small app shortcodes |
 | `page-transition.php` | "Loading East Winds…" screen between page loads |
+| `admin-tweaks.php` | Removes Preview / View (button, permalink box, row action, admin-bar item) for menus, alerts and offers, which have no page of their own and are only shown inside other app screens |
 | `dev-tools-guard.php` | Hides the Novamira admin-bar switch from staff (anyone without `install_plugins`) and refuses Novamira's admin-post / AJAX actions for them, since Role-GenX leaves those endpoints alone |
 
 ### 4.4 Data model (JetEngine)
 - **CPTs:** `stay`, `room`, `excursion`, `ew_exc_booking` (private), `ew_desk_message` (private), `daily-content`, `offer`, `alert`.
 - **Taxonomy:** `excursion_category`, **hierarchical**. *Spa & Wellness* has the treatment sub-categories; being in one of those children is what makes an item a "spa treatment".
 - **Options page:** `resort-settings` (all resort-wide content).
-- **Key meta:** stay dates and token on `stay`; `recurrence_mode`, `schedule_date`, `capacity`, `price`, `excursion_type` on `excursion`; `status`, `guests_count`, `decline_reason` on bookings; `content_date`, `meal` on daily content.
+- **Key meta:** stay dates and token on `stay`; `recurrence_mode`, `schedule_date`, `capacity`, `price`, `excursion_type` on `excursion`; `status`, `guests_count`, `decline_reason` on bookings; `content_date`, `meal` on daily content (`breakfast`, `lunch`, `afternoon_tea`, `dinner`; labels and service windows in `ew_meals()` / `ew_meals_now()` in `shortcodes-extra.php`). One menu per meal per day; Afternoon Tea shows from 11:00 alongside lunch and is served at the time set in Resort Settings.
 
 ### 4.5 Front-end composition
 - Pages: Today (front page), Explore, Book, My Stay, Resort, Menu, Hosts.
