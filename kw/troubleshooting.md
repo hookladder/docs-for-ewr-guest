@@ -25,6 +25,7 @@ Asou iPhone, app-la asou ékwan dakèy-la pa ka pataj mémwa Safari. Mandé envi
 ### Envité-a ka wè vyé enfòmasyon toujou apwé mwen chanjé'y
 
 - Gadé si ou pézé **Update** (oben **Save**) épi si on mésaj konfiwmasyon paèt.
+- Manjé, alèt épi òf pa ni bouton Preview: gadé yo an app-la. Tit manjé yo pa janmen ka paèt an app-la.
 - Mandé envité-a tiwé ékwan-an désann pou wafwéchi'y, oben fèmé épi ouvè app-la ankò.
 - Gadé dat yo: manjé bizwen bon **Content Date**-la, aktivité bon jou yo, òf épi alèt bon koumansman épi bon fen.
 

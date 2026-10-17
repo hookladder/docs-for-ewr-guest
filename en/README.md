@@ -48,7 +48,7 @@ As a Resort Manager you only see what you need. Developer tools are hidden, and 
 2. **Change, don't copy.** To keep menus and events current, change the date of an existing item instead of creating a copy. Fewer items means fewer mistakes.
 3. **Move to Trash, never delete for good.** The Trash keeps items for 30 days, so mistakes can be undone. See [Restoring from the Trash](/en/troubleshooting?id=i-deleted-something-by-mistake).
 4. **Saint Lucia time.** All dates and times in the admin are Saint Lucia time (AST). Midnight is when “today” changes in the app.
-5. **Write for guests.** Titles, descriptions and decline notes are read by guests. Use British English and full sentences.
+5. **Write for guests.** Descriptions, dishes, alert messages and decline notes are read by guests. Use British English and full sentences. Some titles are only for the team: each section says which.
 6. **When unsure, ask.** Writing to [support](/en/support) is always better than guessing.
 
 ## How the guest app works

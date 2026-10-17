@@ -50,7 +50,7 @@ Kon Resort Manager, ou ka wè sèlman sa ou bizwen. Zouti dévlòpè yo kaché, 
 2. **Chanjé, pa kopyé.** Pou kenbé manjé épi évènman ajou, chanjé dat on bagay ki la ja, olyé fè on kopi. Mwens bagay, mwens fòt.
 3. **Mété'y an Trash, pa janmen éfasé'y nèt.** Trash-la ka kenbé bagay pou 30 jou, kon sa ou sa défèt on fòt. Gadé [Wikipéwé on bagay adan Trash-la](/kw/troubleshooting?id=mwen-éfasé-on-bagay-pa-érè).
 4. **Lè Sent Lisi.** Tout dat épi lè adan admin-lan sé lè Sent Lisi (AST). Sé a minwi “jòdi-a” ka chanjé an app-la.
-5. **Ékwi pou envité.** Envité ka li tit, déskwipsyon épi nòt yo. Ékwi an bon Anglé (British English), ak fwaz konplé.
+5. **Ékwi pou envité.** Envité ka li déskwipsyon, plat, mésaj alèt épi nòt decline yo. Ékwi an bon Anglé (British English), ak fwaz konplé. Kèk tit sé pou ékip-la sèlman: chak sèksyon ka di kilès.
 6. **Si ou pa sèten, mandé.** Ékwi [sipò](/kw/support) toujou pi bon ki dévinen.
 
 ## Kouman app envité-a ka mawché
