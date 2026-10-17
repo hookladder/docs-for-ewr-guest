@@ -25,6 +25,7 @@ On iPhone, the home screen app does not share Safari's memory. Ask the guest to 
 ### The guest still sees old information after I changed it
 
 - Check that you pressed **Update** (or **Save**) and that a confirmation message appeared.
+- Menus, alerts and offers have no Preview button: check them in the app itself. Menu titles never show in the app.
 - Ask the guest to pull down to refresh, or to close and reopen the app.
 - Check the dates: menus need the right **Content Date**, experiences the right days, offers and alerts the right start and end.
 
