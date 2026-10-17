@@ -1,8 +1,9 @@
 # East Winds Resort — Guest App: Project Context
 
 **Client:** East Winds Resort, St Lucia · **Built by:** Hook & Ladder, inc. (H&L Digital)
-**Status:** In production, in guest testing · **Document date:** 13 October 2026
-**Production:** `https://wordpress-1587086-6643085.cloudwaysapps.com` (Cloudways, temporary domain)
+**Status:** Staging; the resort team is training with the staff manual · **Last updated:** 16 October 2026
+**Site:** `https://wordpress-1587086-6643085.cloudwaysapps.com` (Cloudways, temporary domain; treated as staging until the move to the final domain)
+**Staff manual:** <https://staffdocs.eastwinds.com> (this repository, `hookladder/docs-for-ewr-guest`)
 
 This document is the starting point for anyone (person or AI agent) picking up the project. It explains why the app exists, how guests and staff use it, how it is built, and the constraints that are easy to miss. It deliberately stays at product and architecture level; implementation detail lives in the docblocks of each file referenced below.
 
@@ -69,16 +70,18 @@ On the first visit while on property, a **blocking check-in gate** collects cont
 |---|---|
 | **Stays** | Create and edit guest stays; the private link is derived from the token |
 | **Rooms** | Room types and numbers used by stays |
-| **Excursions** | Activities and spa treatments: schedule (weekly / one-off / by request), capacity, price, meet point, image, category |
+| **Excursions** | Activities and spa treatments: schedule (weekly / one-off / by request), spots (*Spots Available*), price, meet point, image, category |
 | **Exc. Bookings** | Booking queue. Sidebar bubble = pending requests. Row actions *Approve* / *Decline* (decline opens a dialog requiring a reason). A **Spa** view isolates spa requests |
 | **Desk Messages** | Messages from guests ("Say hello", "Message the desk", "Plan this with us"). Sidebar bubble = unread; opening a message marks it read |
-| **Daily Content** | Menus per date and meal (breakfast / lunch / dinner) |
+| **Daily Content** | Menus per date and meal (breakfast / lunch / afternoon tea / dinner). The title is internal (restaurant and meal); guests see the meal and its dishes. No Preview: menus are checked in the app |
 | **Offers / Alerts** | Promotions and operational notices shown in the app |
 | **Resort Settings** | One options page for resort-wide content: hosts, services, hours, map, directory, feedback links, **Island guide cards** |
 | **PWA WP Router** | App name, icon, colours and install-button styling |
 | **Role-GenX** | Admin sidebar order and custom roles |
 
-**Resort Manager role** (Role-GenX): sees only the resort's content types, Media and Resort Settings, with the URL guard blocking everything else.
+**Resort Manager role** (Role-GenX): sees only the resort's content types, Media and Resort Settings, with the URL guard blocking everything else. Anyone who cannot install plugins is also treated as staff by `dev-tools-guard.php`, which hides the Novamira switch and refuses its actions. One account per person, never shared; an H&L test Manager account is used for the manual's screenshots. Usernames and passwords are never written in this repository, which is public.
+
+**Staff manual:** <https://staffdocs.eastwinds.com>, in English and Saint Lucian Kwéyòl (draft, pending native review). Docsify site published by GitHub Pages from `main` of this repository; work goes to `new-version-incoming` and reaches `main` through a reviewed pull request. Commits are authored by Ali Leon only (no AI co-author line), so a person stays accountable at handover. See the root `README.md` for editing and publishing.
 
 **Island guide cards** (Resort Settings → *Island things to do*): title, image and a description that accepts a tiny markdown subset (blank line = new paragraph, `**bold**`, `- ` bullet). Order in the repeater is the order in the app. Every card ends with a "Plan this with us" button that opens a pre-filled message to the front desk.
 
@@ -126,7 +129,7 @@ Notifications for new booking requests and guest messages are emailed to the fro
 - **CPTs:** `stay`, `room`, `excursion`, `ew_exc_booking` (private), `ew_desk_message` (private), `daily-content`, `offer`, `alert`.
 - **Taxonomy:** `excursion_category`, **hierarchical**. *Spa & Wellness* has the treatment sub-categories; being in one of those children is what makes an item a "spa treatment".
 - **Options page:** `resort-settings` (all resort-wide content).
-- **Key meta:** stay dates and token on `stay`; `recurrence_mode`, `schedule_date`, `capacity`, `price`, `excursion_type` on `excursion`; `status`, `guests_count`, `decline_reason` on bookings; `content_date`, `meal` on daily content (`breakfast`, `lunch`, `afternoon_tea`, `dinner`; labels and service windows in `ew_meals()` / `ew_meals_now()` in `shortcodes-extra.php`). One menu per meal per day; Afternoon Tea shows from 11:00 alongside lunch and is served at the time set in Resort Settings.
+- **Key meta:** stay dates and token on `stay`; `recurrence_mode`, `schedule_date`, `spots_available` (the capacity staff edit; legacy hidden `capacity` is only a fallback), `price`, `excursion_type` on `excursion`; `status`, `guests_count`, `decline_reason` on bookings; `content_date`, `meal` on daily content (`breakfast`, `lunch`, `afternoon_tea`, `dinner`; labels and service windows in `ew_meals()` / `ew_meals_now()` in `shortcodes-extra.php`). One menu per meal per day; Afternoon Tea shows from 11:00 alongside lunch and is served at the time set in Resort Settings.
 
 ### 4.5 Front-end composition
 - Pages: Today (front page), Explore, Book, My Stay, Resort, Menu, Hosts.
@@ -142,7 +145,7 @@ Notifications for new booking requests and guest messages are emailed to the fro
 3. **Nested Elementor templates need their CSS enqueued manually** (JetTabs panels, `[elementor-template]`); see `explore.php` and `book.php`.
 4. **Elementor Pro popups don't fire on this site** (they conflict with JetPopup). Modals are hand-rolled.
 5. **No hover, focus or tap colour change on any button.** Hello Elementor's reset paints buttons pink on hover; a dedicated block at the end of `ew-app.css` pins every button's states to its base colours. Keyboard `:focus-visible` outlines stay for accessibility.
-6. **Re-date, don't duplicate.** To keep menus or stays current, move existing items to new dates and trash what is past. Daily content holds only today onwards, 3 items per day, alternating two menu sets.
+6. **Re-date, don't duplicate.** To keep menus or stays current, move existing items to new dates and trash what is past. Daily content holds only today onwards, one item per meal and day, alternating two menu sets.
 7. **Backups before edits.** Production files and settings are backed up into non-autoloaded `ew_backup_*` options (never as `.bak` files in the web root, which would expose source).
 8. **Language:** code comments and H&L documentation in English; guest-facing copy in British English.
 
@@ -161,8 +164,8 @@ Notifications for new booking requests and guest messages are emailed to the fro
 - `ew-app.css` is versioned by file modification time.
 
 ### 6.3 Working on the site with an AI agent
-- Production is operated through the **Novamira MCP** (stdio proxy `@automattic/mcp-wordpress-remote`, credentials as environment variables only).
-- If the MCP connects with **0 tools**, Imunify is blocking the current public IP: whitelist it (preferably the whole /24) and reconnect.
+- The site is operated through **Novamira**: either the MCP (stdio proxy `@automattic/mcp-wordpress-remote`, credentials as environment variables only) or the **Novamira CLI** (`novamira --site east-winds …`, OAuth login approved in the browser).
+- If the MCP connects with **0 tools**, or the CLI reports *"OAuth metadata is malformed or unavailable"*, Imunify is blocking the current public IP (the site answers with its "One moment, please…" challenge page). Whitelist that IP in Cloudways (preferably the whole /24) and retry. Never send bursts of parallel requests: they trigger a hard block.
 - Novamira keeps a **memory** inside WordPress with project notes, product rules and open items. Agents should read it at the start of a session.
 
 ---
@@ -171,15 +174,32 @@ Notifications for new booking requests and guest messages are emailed to the fro
 
 | Item | Impact | Suggested direction |
 |---|---|---|
-| Capacity counts **all-time** bookings, not per session | Weekly activities with a capacity gradually show as full | Count only bookings for the next session date |
+| Capacity counts **all-time** bookings, not per session | Weekly activities gradually show as full (staff can raise *Spots Available*, which since 13 October is the field the booking engine reads) | Count only bookings for the next session date |
 | *Today* / *This week* filters hide by-request items (incl. spa) | Standing activities only appear under *All upcoming* | Always show standing items, or label them separately |
 | Card meta line starts with "·" on items without a time | Cosmetic | Skip the separator when the time is empty |
 | My Stay renders empty after check-out | Past guests see a blank screen | Add a post-stay state |
 | Island cards edited inside Resort Settings | No drafts, scheduling or revisions | Optional move to an "Island Guide" CPT |
 | Resort Manager role holds `manage_options` (needed by Resort Settings) | Plugin AJAX/REST handlers that check only that capability stay reachable | Give Resort Settings a dedicated capability and drop `manage_options` |
 | Guest email on decline | On stand-by (not discarded) | Reuse the decline-reason text when it comes back |
-| Temporary Cloudways domain | Links sent to guests will change | Move to the final domain before sending real invitations |
+| Temporary Cloudways domain | Private links, and the QR codes East Winds prints in welcome letters, will change | Move to the final domain before any letter for real guests is printed |
 | Media placeholders still in use | Some items share demo photos | Replace with real photography |
+
+### 7.1 Scope: V1 and V2 (agreed 16 October 2026)
+
+After the resort's first round of feedback (Judith, 16 October), the line between the current version and the next phase is:
+
+| Request | Where it lands | Notes |
+|---|---|---|
+| Rename menus to *Bird of Paradise Restaurant*; remove the confusing Preview | **V1, done** | `admin-tweaks.php`; titles are internal |
+| *Afternoon Tea* as a meal | **V1, done** | Shows 11:00–17:00; time read from Resort Settings |
+| QR code for each stay | **Client side** | East Winds turns the stay permalink into a QR code with any generator |
+| Welcome letter | **Client side** | Built by hand by East Winds |
+| Team training | **Manual only** | No live session; support by email |
+| Reply to desk messages inside the app | **V2, development** | Together with guest emails, including the decline email on stand-by |
+| Printable daily sheet of spa and excursion bookings | **V2, separate plugin** | A booking-management (CRM-type) feature |
+| Guest instruction card, Spa & Excursion flyers, generated welcome letter with QR | **V2, design team** | Needs a designed template plus a printable-format build |
+
+The commercial line for V1 is not closed yet; anything outside the V1 rows needs a proposal before work starts.
 
 ---
 
@@ -187,3 +207,4 @@ Notifications for new booking requests and guest messages are emailed to the fro
 - **EW Stay Access:** the docblock at the top of each `includes/*.php`, and the comment sections in `assets/ew-app.css`.
 - **PWA WP Router / Role-GenX:** their `README.md` (installation, configuration, security model, tests, changelog).
 - **Novamira memory** in WordPress: the current product rules and open items.
+- **Staff manual** source: `en/` and `kw/` in this repository; the root `README.md` explains how to edit and publish it.
