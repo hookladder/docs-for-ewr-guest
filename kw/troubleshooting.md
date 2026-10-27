@@ -63,7 +63,7 @@ Bagay ka wété an Trash pou 30 jou. Bagay ou éfasé adan Media, oben ak *Delet
 
 ### Paj pou antwé-a ka di “page not found”
 
-Ou ka sèvi adwès WordPress dabitid-la. Ouvè adwès prive pou antwé-a ki an bookmark ou olyé. Si ou pa ni'y ankò, ékwi [sipò](/kw/support).
+Ou ka sèvi adwès WordPress dabitid-la. Ouvè adwès ékip-la pou antwé olyé: `https://guest.eastwinds.com/903ewr-staff-login/` (gadé [Antwé an admin-lan](/kw/?id=antwé-an-admin-lan)).
 
 ### “Sorry, you are not allowed to access this page”
 

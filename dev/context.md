@@ -2,7 +2,8 @@
 
 **Client:** East Winds Resort, St Lucia · **Built by:** Hook & Ladder, inc. (H&L Digital)
 **Status:** Staging, hardened for a soft release; the resort team is training with the staff manual · **Last updated:** 27 October 2026
-**Site:** `https://wordpress-1587086-6643085.cloudwaysapps.com` (Cloudways, temporary domain; treated as staging until the move to the final domain)
+**Staging (this work):** `https://wordpress-1587086-6643085.cloudwaysapps.com` (Cloudways)
+**Production (from launch):** `https://guest.eastwinds.com` (today it still points to a different Cloudways app, `…-6637015`; the live version will be served there)
 **Staff manual:** <https://staffdocs.eastwinds.com> (this repository, `hookladder/docs-for-ewr-guest`)
 
 This document is the starting point for anyone (person or AI agent) picking up the project. It explains why the app exists, how guests and staff use it, how it is built, and the constraints that are easy to miss. It deliberately stays at product and architecture level; implementation detail lives in the docblocks of each file referenced below.
@@ -159,7 +160,8 @@ Notifications for new booking requests and guest messages are emailed to the fro
 - **Shared server: 2 CPUs and ~4 GB RAM** hosting other applications. Every uncached WordPress boot costs ~1.2 s of CPU, so bursts of admin traffic can saturate it.
 - **Imunify360 Bot Protection** is active. It blocks automation (the Novamira MCP) from IPs that are not whitelisted, and its JavaScript challenge **drops the private-link path on redirect**, so a guest opening their link for the first time from a non-whitelisted network can land without a session. Recommendation: **disable Bot Protection for this app**, or have Cloudways exclude the app's routes and `/wp-json/mcp/novamira`.
 - **Hardening (27 October 2026):** search engines are discouraged (Settings > Reading, plus `noindex` on every page), sitemaps and the REST users endpoint are off for visitors, security headers are set, and the old `.bak` copies inside the plugin were removed (they were downloadable as source; their content is kept in the non-autoloaded option `ew_backup_bak_files_20261027`).
-- **Login:** WPS Hide Login moves the login to a private address; `/wp-login.php` and `/wp-admin` (signed out) return 404. The address is shared with the team privately and is **never written in this public repository** or in the manual. Novamira is unaffected (it authenticates through REST).
+- **Login:** WPS Hide Login moves the login to `/903ewr-staff-login/`; `/wp-login.php` and `/wp-admin` (signed out) return 404. By decision (27 October 2026) the team address is published in the manual (`https://guest.eastwinds.com/903ewr-staff-login/`), so the live site must use the same slug. Novamira is unaffected (it authenticates through REST).
+- **Manual gate:** only `resortmanager@eastwinds.com` and `dev-admin@hldigital.ca` pass the courtesy form of the staff manual (stored as SHA-256 fingerprints). It is not access control: the manual's files are public.
 - **Activity log:** Simple History records sign-ins and changes, visible to administrators only.
 - **Desk messages:** only a guest with a valid stay session can send one, at most 10 per hour, so the form cannot be used to spam the front desk mailbox.
 - **WP-Cron** runs on page loads (~150 times per hour). Recommendation: a server cron every 5 minutes in Cloudways, then `DISABLE_WP_CRON`.

@@ -63,7 +63,7 @@ Items stay in the Trash for 30 days. Items deleted from Media, or with *Delete P
 
 ### The login page says “page not found”
 
-You are using the usual WordPress address. Open the private login address from your bookmark instead. If you no longer have it, write to [support](/en/support).
+You are using the usual WordPress address. Open the team login address instead: `https://guest.eastwinds.com/903ewr-staff-login/` (see [Signing in](/en/?id=signing-in)).
 
 ### “Sorry, you are not allowed to access this page”
 

@@ -12,7 +12,8 @@ App envité-a sé ti sit wèb-la chak envité ka ouvè asou téléfòn yo pandan
 
 ## Antwé an admin-lan
 
-1. Ouvè **adwès prive pou antwé-a** Hook + Ladder ba'w-la, asou on konpitè oben on tablèt. Sové'y kon on bookmark.
+1. Ouvè adwès ékip-la pou antwé, asou on konpitè oben on tablèt, épi sové'y kon on bookmark:
+   `https://guest.eastwinds.com/903ewr-staff-login/`
 2. Tapé **username** ou (oben imél ou) épi **password** Hook + Ladder ba'w-la.
 3. Pézé **Log In**. Ou ka antwé an admin-lan, épi mennou'w koté goch.
 
@@ -20,9 +21,9 @@ App envité-a sé ti sit wèb-la chak envité ka ouvè asou téléfòn yo pandan
 
 !> **Pa bay pèsonn password ou** Chak manadjè ni kont pa yo, kon sa admin-lan sa montwé kilès ki aksepté oben wifizé chak booking. Pa janmen pataj on kont. Si ou bliyé password ou, sèvi *Lost your password?* asou ékwan pou antwé-a.
 
-!> **Kenbé adwès pou antwé-a prive** Adwès WordPress dabitid yo (`/wp-login.php`, `/wp-admin`) ka montwé “page not found” èspwé, kon sa atak otomatik pa sa jwenn koté pou antwé-a. Pa janmen bay adwès prive-a pèsonn andéwò ékip-la, épi pa janmen mété'y adan on group chat oben on dokiman. Si ou pèd li, ékwi [sipò](/kw/support).
+!> **Kenbé adwès pou antwé-a andidan ékip-la** Adwès WordPress dabitid yo (`/wp-login.php`, `/wp-admin`) ka montwé “page not found” èspwé, kon sa atak otomatik pa sa jwenn koté pou antwé-a. Pa bay adwès ékip-la pèsonn andéwò East Winds, épi pa mété'y asou rézo sosyal oben adan chat piblik.
 
-?> **Adwès-la kay chanjé** Sit-la ka mawché asou on adwès pou on ti tan toujou. Lè resort-la kay pasé asou adwès final li, ou kay wisivwè nouvo adwès-la.
+?> **Adwès pou lansman-an** `guest.eastwinds.com` sé adwès app-la dépi lansman-an. Jis lè sa, ékip-la ka aprann asou on kopi tès app-la; Hook + Ladder kay di'w lè adwès lansman-an paré.
 
 ## Mennou ou
 
