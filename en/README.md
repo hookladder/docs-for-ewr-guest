@@ -10,13 +10,15 @@ The guest app is the little website each guest opens on their phone during their
 
 ## Signing in
 
-1. Open `https://wordpress-1587086-6643085.cloudwaysapps.com/wp-admin/` on a computer or tablet.
+1. Open the **private login address** you received from Hook + Ladder, on a computer or tablet. Save it as a bookmark.
 2. Type the **username** (or email) and **password** you received from Hook + Ladder.
 3. Press **Log In**. You land in the admin, with your menu on the left.
 
 <figure><img src="assets/img/login.webp" alt="The WordPress login screen"><figcaption>The login screen.</figcaption></figure>
 
 !> **Keep your password to yourself** Every manager has their own account, so the admin can show who approved or declined each booking. Never share an account. If you forget your password, use *Lost your password?* on the login screen.
+
+!> **Keep the login address private** The usual WordPress addresses (`/wp-login.php`, `/wp-admin`) show a “page not found” error on purpose, so automated attacks cannot find the login. Never share the private address outside the team, and never post it in a group chat or document. If you lose it, write to [support](/en/support).
 
 ?> **The address will change** The site still runs on a temporary address. When the resort moves to its final domain, you will receive the new login address.
 

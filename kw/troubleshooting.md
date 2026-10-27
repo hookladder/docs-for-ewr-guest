@@ -61,6 +61,10 @@ I ka konté booking ki <span class="pill pending">pending</span> toujou. Réponn
 
 Bagay ka wété an Trash pou 30 jou. Bagay ou éfasé adan Media, oben ak *Delete Permanently*, ou pa sa mennen yo tounen. Ékwi sipò.
 
+### Paj pou antwé-a ka di “page not found”
+
+Ou ka sèvi adwès WordPress dabitid-la. Ouvè adwès prive pou antwé-a ki an bookmark ou olyé. Si ou pa ni'y ankò, ékwi [sipò](/kw/support).
+
 ### “Sorry, you are not allowed to access this page”
 
 Wòl ou pa ka bay ékwan-sala. Sé èspwé: i ka pwotéjé pati sit-la sèlman dévlòpè dwèt chanjé. Si ou ka kwè ou bizwen'y, ékwi sipò.

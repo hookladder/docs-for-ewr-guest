@@ -1,7 +1,7 @@
 # East Winds Resort — Guest App: Project Context
 
 **Client:** East Winds Resort, St Lucia · **Built by:** Hook & Ladder, inc. (H&L Digital)
-**Status:** Staging; the resort team is training with the staff manual · **Last updated:** 16 October 2026
+**Status:** Staging, hardened for a soft release; the resort team is training with the staff manual · **Last updated:** 27 October 2026
 **Site:** `https://wordpress-1587086-6643085.cloudwaysapps.com` (Cloudways, temporary domain; treated as staging until the move to the final domain)
 **Staff manual:** <https://staffdocs.eastwinds.com> (this repository, `hookladder/docs-for-ewr-guest`)
 
@@ -123,7 +123,8 @@ Notifications for new booking requests and guest messages are emailed to the fro
 | `offer.php`, `shortcodes-extra.php` | Offers, menus, weather, small app shortcodes |
 | `page-transition.php` | "Loading East Winds…" screen between page loads |
 | `admin-tweaks.php` | Removes Preview / View (button, permalink box, row action, admin-bar item) for menus, alerts and offers, which have no page of their own and are only shown inside other app screens |
-| `dev-tools-guard.php` | Hides the Novamira admin-bar switch from staff (anyone without `install_plugins`) and refuses Novamira's admin-post / AJAX actions for them, since Role-GenX leaves those endpoints alone |
+| `dev-tools-guard.php` | Treats anyone without `install_plugins` as staff. Hides the Novamira admin-bar switch, refuses Novamira's admin-post / AJAX actions, and refuses staff REST writes to developer tools: Novamira, MCP and the core Abilities API (which run PHP), AI proxies, the JetEngine builder, `/wp/v2/settings`, and Elementor or plugin settings. Role-GenX leaves admin-post, AJAX and REST alone, so this file covers them |
+| `security.php` | Keeps stays unlisted (out of REST, search and sitemaps; an old stay slug never redirects to a rotated token), hides usernames from visitors (REST users, author archives), sends Referrer-Policy, nosniff, X-Frame-Options and HSTS, and disables the file editors |
 
 ### 4.4 Data model (JetEngine)
 - **CPTs:** `stay`, `room`, `excursion`, `ew_exc_booking` (private), `ew_desk_message` (private), `daily-content`, `offer`, `alert`.
@@ -140,14 +141,15 @@ Notifications for new booking requests and guest messages are emailed to the fro
 
 ## 5. Engineering conventions (non-obvious)
 
-1. **Guest pages are never page-cached.** Any response with a session sends `no-store` + `DONOTCACHEPAGE`; per-guest data must never reach a shared cache.
-2. **Use the plugin that owns the data.** Content types, fields and the options page belong to JetEngine. Don't register CPTs, taxonomies or meta in PHP for content JetEngine models.
-3. **Nested Elementor templates need their CSS enqueued manually** (JetTabs panels, `[elementor-template]`); see `explore.php` and `book.php`.
-4. **Elementor Pro popups don't fire on this site** (they conflict with JetPopup). Modals are hand-rolled.
-5. **No hover, focus or tap colour change on any button.** Hello Elementor's reset paints buttons pink on hover; a dedicated block at the end of `ew-app.css` pins every button's states to its base colours. Keyboard `:focus-visible` outlines stay for accessibility.
-6. **Re-date, don't duplicate.** To keep menus or stays current, move existing items to new dates and trash what is past. Daily content holds only today onwards, one item per meal and day, alternating two menu sets.
-7. **Backups before edits.** Production files and settings are backed up into non-autoloaded `ew_backup_*` options (never as `.bak` files in the web root, which would expose source).
-8. **Language:** code comments and H&L documentation in English; guest-facing copy in British English.
+1. **A stay URL is a key.** Tokens are 16 random characters; stays must never appear in REST, search, sitemaps or any listing, and a rotated token must stop working (no old-slug redirect). See `security.php`.
+2. **Guest pages are never page-cached.** Any response with a session sends `no-store` + `DONOTCACHEPAGE`; per-guest data must never reach a shared cache.
+3. **Use the plugin that owns the data.** Content types, fields and the options page belong to JetEngine. Don't register CPTs, taxonomies or meta in PHP for content JetEngine models.
+4. **Nested Elementor templates need their CSS enqueued manually** (JetTabs panels, `[elementor-template]`); see `explore.php` and `book.php`.
+5. **Elementor Pro popups don't fire on this site** (they conflict with JetPopup). Modals are hand-rolled.
+6. **No hover, focus or tap colour change on any button.** Hello Elementor's reset paints buttons pink on hover; a dedicated block at the end of `ew-app.css` pins every button's states to its base colours. Keyboard `:focus-visible` outlines stay for accessibility.
+7. **Re-date, don't duplicate.** To keep menus or stays current, move existing items to new dates and trash what is past. Daily content holds only today onwards, one item per meal and day, alternating two menu sets.
+8. **Backups before edits.** Production files and settings are backed up into non-autoloaded `ew_backup_*` options (never as `.bak` files in the web root, which would expose source).
+9. **Language:** code comments and H&L documentation in English; guest-facing copy in British English.
 
 ---
 
@@ -156,6 +158,10 @@ Notifications for new booking requests and guest messages are emailed to the fro
 ### 6.1 Hosting and security (Cloudways)
 - **Shared server: 2 CPUs and ~4 GB RAM** hosting other applications. Every uncached WordPress boot costs ~1.2 s of CPU, so bursts of admin traffic can saturate it.
 - **Imunify360 Bot Protection** is active. It blocks automation (the Novamira MCP) from IPs that are not whitelisted, and its JavaScript challenge **drops the private-link path on redirect**, so a guest opening their link for the first time from a non-whitelisted network can land without a session. Recommendation: **disable Bot Protection for this app**, or have Cloudways exclude the app's routes and `/wp-json/mcp/novamira`.
+- **Hardening (27 October 2026):** search engines are discouraged (Settings > Reading, plus `noindex` on every page), sitemaps and the REST users endpoint are off for visitors, security headers are set, and the old `.bak` copies inside the plugin were removed (they were downloadable as source; their content is kept in the non-autoloaded option `ew_backup_bak_files_20261027`).
+- **Login:** WPS Hide Login moves the login to a private address; `/wp-login.php` and `/wp-admin` (signed out) return 404. The address is shared with the team privately and is **never written in this public repository** or in the manual. Novamira is unaffected (it authenticates through REST).
+- **Activity log:** Simple History records sign-ins and changes, visible to administrators only.
+- **Desk messages:** only a guest with a valid stay session can send one, at most 10 per hour, so the form cannot be used to spam the front desk mailbox.
 - **WP-Cron** runs on page loads (~150 times per hour). Recommendation: a server cron every 5 minutes in Cloudways, then `DISABLE_WP_CRON`.
 
 ### 6.2 Caching layers
@@ -179,7 +185,8 @@ Notifications for new booking requests and guest messages are emailed to the fro
 | Card meta line starts with "·" on items without a time | Cosmetic | Skip the separator when the time is empty |
 | My Stay renders empty after check-out | Past guests see a blank screen | Add a post-stay state |
 | Island cards edited inside Resort Settings | No drafts, scheduling or revisions | Optional move to an "Island Guide" CPT |
-| Resort Manager role holds `manage_options` (needed by Resort Settings) | Plugin AJAX/REST handlers that check only that capability stay reachable | Give Resort Settings a dedicated capability and drop `manage_options` |
+| Resort Manager role keeps `manage_options` **by decision** (the Manager runs the whole app) | Plugin AJAX handlers that check only that capability, and any plugin installed later, are reachable by staff | Known developer routes are refused in `dev-tools-guard.php`; check every new plugin's AJAX and REST routes against the Manager role before installing it |
+| No 2FA and no login-attempt limit | Password guessing relies on the private login address and Imunify | Add a login limiter or 2FA before the public launch |
 | Guest email on decline | On stand-by (not discarded) | Reuse the decline-reason text when it comes back |
 | Temporary Cloudways domain | Private links, and the QR codes East Winds prints in welcome letters, will change | Move to the final domain before any letter for real guests is printed |
 | Media placeholders still in use | Some items share demo photos | Replace with real photography |
