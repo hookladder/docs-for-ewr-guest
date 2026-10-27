@@ -13,6 +13,37 @@
 <link rel="stylesheet" href="assets/theme.css">
 </head>
 <body>
+<!-- Courtesy gate: keeps casual visitors out, NOT a security boundary. The Markdown files stay
+     readable directly (and in the public repo), so nothing secret may ever be written in the manual. -->
+<form id="gate" class="gate" novalidate>
+	<div class="gate-card">
+		<p class="gate-brand"><span class="star">✦</span> East Winds <span class="badge">Beta</span></p>
+		<h1>Manager Manual</h1>
+		<p>For the East Winds team. Enter your work email to continue.<br><span lang="acf">Pou ékip East Winds. Mété imél twavay ou pou kontinyé.</span></p>
+		<label for="gate-email">Work email</label>
+		<input id="gate-email" type="email" autocomplete="email" placeholder="name@eastwinds.com" required>
+		<p class="gate-error" role="alert" hidden>Use your @eastwinds.com or @hldigital.ca email.</p>
+		<button type="submit">Continue</button>
+	</div>
+</form>
+<script>
+	(function () {
+		var KEY = 'ew-docs-access', DAYS = 30, DOMAINS = ['eastwinds.com', 'hldigital.ca'];
+		var root = document.documentElement, form = document.getElementById('gate');
+		try { var saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved && saved.exp > Date.now()) return form.remove(); } catch (e) {}
+		root.classList.add('gated');
+		form.addEventListener('submit', function (e) {
+			e.preventDefault();
+			var email = form.querySelector('input').value.trim().toLowerCase();
+			var ok = /^[^\s@]+@([^\s@]+)$/.test(email) && DOMAINS.indexOf(email.split('@')[1]) !== -1;
+			form.querySelector('.gate-error').hidden = ok;
+			if (!ok) return;
+			try { localStorage.setItem(KEY, JSON.stringify({ email: email, exp: Date.now() + DAYS * 864e5 })); } catch (e) {}
+			root.classList.remove('gated');
+			form.remove();
+		});
+	})();
+</script>
 <div id="app"></div>
 <script>
 	// Content lives in en/ and kw/ (one Markdown file per section, same file names in both).

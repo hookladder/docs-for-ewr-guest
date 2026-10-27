@@ -40,6 +40,7 @@ GitHub Pages serves `main` (*Settings → Pages → Deploy from a branch → `ma
 
 - **Domain:** `staffdocs.eastwinds.com`, set by the `CNAME` file. DNS lives in Cloudflare: a `CNAME` record `staffdocs → hookladder.github.io` in **DNS only** mode (grey cloud), so GitHub can issue the HTTPS certificate.
 - **Not indexed:** `index.html` carries `<meta name="robots" content="noindex, nofollow">`. The site is still public to anyone with the link.
+- **Courtesy gate:** before the manual shows, a small form asks for a work email ending in `@eastwinds.com` or `@hldigital.ca` (list in `index.html`), remembered for 30 days in the browser. It keeps casual visitors out but is **not** a security boundary: the Markdown files stay readable directly and in this public repository, so never write anything secret in the manual (login addresses, stay links, passwords). Real access control would need a private repository behind Cloudflare Access.
 - **Branches:** `main` is the published version. Work happens on `new-version-incoming` and reaches `main` through a reviewed merge.
 
 ## Editing the manual
