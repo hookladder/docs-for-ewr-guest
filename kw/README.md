@@ -12,13 +12,15 @@ App envité-a sé ti sit wèb-la chak envité ka ouvè asou téléfòn yo pandan
 
 ## Antwé an admin-lan
 
-1. Ouvè `https://wordpress-1587086-6643085.cloudwaysapps.com/wp-admin/` asou on konpitè oben on tablèt.
+1. Ouvè **adwès prive pou antwé-a** Hook + Ladder ba'w-la, asou on konpitè oben on tablèt. Sové'y kon on bookmark.
 2. Tapé **username** ou (oben imél ou) épi **password** Hook + Ladder ba'w-la.
 3. Pézé **Log In**. Ou ka antwé an admin-lan, épi mennou'w koté goch.
 
 <figure><img src="assets/img/login.webp" alt="Ékwan pou antwé an WordPress"><figcaption>Ékwan pou antwé-a.</figcaption></figure>
 
 !> **Pa bay pèsonn password ou** Chak manadjè ni kont pa yo, kon sa admin-lan sa montwé kilès ki aksepté oben wifizé chak booking. Pa janmen pataj on kont. Si ou bliyé password ou, sèvi *Lost your password?* asou ékwan pou antwé-a.
+
+!> **Kenbé adwès pou antwé-a prive** Adwès WordPress dabitid yo (`/wp-login.php`, `/wp-admin`) ka montwé “page not found” èspwé, kon sa atak otomatik pa sa jwenn koté pou antwé-a. Pa janmen bay adwès prive-a pèsonn andéwò ékip-la, épi pa janmen mété'y adan on group chat oben on dokiman. Si ou pèd li, ékwi [sipò](/kw/support).
 
 ?> **Adwès-la kay chanjé** Sit-la ka mawché asou on adwès pou on ti tan toujou. Lè resort-la kay pasé asou adwès final li, ou kay wisivwè nouvo adwès-la.
 

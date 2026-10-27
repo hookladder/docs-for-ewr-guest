@@ -99,3 +99,19 @@ html[lang=en] .app-nav li:first-child a, html[lang=acf] .app-nav li:last-child a
 	.app-nav { margin-right: 16px; }
 	.support-card { flex-direction: column; align-items: flex-start; }
 }
+
+/* Courtesy gate (index.html): hides the manual until a team email is entered. */
+.gate { display: none; }
+html.gated .gate { display: grid; place-items: center; position: fixed; inset: 0; z-index: 100; padding: 16px; background: var(--canvas); }
+html.gated .app-nav, html.gated main, html.gated .sidebar, html.gated .sidebar-toggle { visibility: hidden; }
+.gate-card { width: 100%; max-width: 420px; padding: 32px; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); box-shadow: 0 10px 30px rgba(26,43,69,0.08); }
+.gate .gate-brand { margin: 0 0 8px; color: var(--navy); font: 600 18px var(--serif); }
+.gate-brand .star { color: var(--gold); }
+.gate-brand .badge { font: 700 11px var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); background: var(--gold-light); border-radius: 50px; padding: 3px 10px; vertical-align: middle; }
+.gate h1 { margin: 0 0 8px; color: var(--navy); font: 600 30px var(--serif); }
+.gate p { margin: 0 0 20px; color: var(--muted); font-size: 15px; line-height: 1.6; }
+.gate label { display: block; margin-bottom: 6px; color: var(--navy); font-weight: 700; font-size: 14px; }
+.gate input { box-sizing: border-box; width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; font: 16px var(--sans); }
+.gate input:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.gate .gate-error { margin: 10px 0 0; color: #9B2C2C; font-size: 14px; }
+.gate button { width: 100%; margin-top: 16px; padding: 12px; border: 0; border-radius: 50px; background: var(--navy); color: #fff; font: 700 15px var(--sans); cursor: pointer; }

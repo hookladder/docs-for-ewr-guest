@@ -61,6 +61,10 @@ It counts bookings still <span class="pill pending">pending</span>. Answer them,
 
 Items stay in the Trash for 30 days. Items deleted from Media, or with *Delete Permanently*, cannot be restored. Write to support.
 
+### The login page says “page not found”
+
+You are using the usual WordPress address. Open the private login address from your bookmark instead. If you no longer have it, write to [support](/en/support).
+
 ### “Sorry, you are not allowed to access this page”
 
 Your role does not include that screen. That is on purpose: it protects the parts of the site that only developers should change. If you think you need it, write to support.
