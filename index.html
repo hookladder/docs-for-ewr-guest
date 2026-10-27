@@ -21,26 +21,42 @@
 		<h1>Manager Manual</h1>
 		<p>For the East Winds team. Enter your work email to continue.<br><span lang="acf">Pou ékip East Winds. Mété imél twavay ou pou kontinyé.</span></p>
 		<label for="gate-email">Work email</label>
-		<input id="gate-email" type="email" autocomplete="email" placeholder="name@eastwinds.com" required>
-		<p class="gate-error" role="alert" hidden>Use your @eastwinds.com or @hldigital.ca email.</p>
+		<input id="gate-email" type="email" autocomplete="email" placeholder="you@eastwinds.com" required>
+		<p class="gate-error" role="alert" hidden>This email does not have access to the manual.</p>
 		<button type="submit">Continue</button>
 	</div>
 </form>
 <script>
 	(function () {
-		var KEY = 'ew-docs-access', DAYS = 30, DOMAINS = ['eastwinds.com', 'hldigital.ca'];
+		// Only two addresses may pass. They are kept as SHA-256 fingerprints so the page source does not
+		// publish them. To change them: printf '%s' 'name@domain' | shasum -a 256
+		var KEY = 'ew-docs-access', DAYS = 30, ALLOWED = [
+			'48f61f562bc107fafbd500900f5e6415138eb59c6655e1d1ee007b57202a6ae9',
+			'ad90c37da81c1f695086e03f638e609508d3378ddce91923f6aa60d9a4a6f477'
+		];
 		var root = document.documentElement, form = document.getElementById('gate');
-		try { var saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved && saved.exp > Date.now()) return form.remove(); } catch (e) {}
+		var sha256 = function (text) {
+			return crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)).then(function (buf) {
+				return Array.from(new Uint8Array(buf), function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+			});
+		};
+		var open = function () { root.classList.remove('gated'); form.remove(); };
+		var saved = null;
+		try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
 		root.classList.add('gated');
+		if (saved && saved.exp > Date.now() && saved.id) {
+			sha256(saved.id).then(function (h) { if (ALLOWED.indexOf(h) !== -1) open(); });
+		}
 		form.addEventListener('submit', function (e) {
 			e.preventDefault();
 			var email = form.querySelector('input').value.trim().toLowerCase();
-			var ok = /^[^\s@]+@([^\s@]+)$/.test(email) && DOMAINS.indexOf(email.split('@')[1]) !== -1;
-			form.querySelector('.gate-error').hidden = ok;
-			if (!ok) return;
-			try { localStorage.setItem(KEY, JSON.stringify({ email: email, exp: Date.now() + DAYS * 864e5 })); } catch (e) {}
-			root.classList.remove('gated');
-			form.remove();
+			sha256(email).then(function (h) {
+				var ok = ALLOWED.indexOf(h) !== -1;
+				form.querySelector('.gate-error').hidden = ok;
+				if (!ok) return;
+				try { localStorage.setItem(KEY, JSON.stringify({ id: email, exp: Date.now() + DAYS * 864e5 })); } catch (e) {}
+				open();
+			});
 		});
 	})();
 </script>

@@ -10,7 +10,8 @@ The guest app is the little website each guest opens on their phone during their
 
 ## Signing in
 
-1. Open the **private login address** you received from Hook + Ladder, on a computer or tablet. Save it as a bookmark.
+1. Open the team login address, on a computer or tablet, and save it as a bookmark:
+   `https://guest.eastwinds.com/903ewr-staff-login/`
 2. Type the **username** (or email) and **password** you received from Hook + Ladder.
 3. Press **Log In**. You land in the admin, with your menu on the left.
 
@@ -18,9 +19,9 @@ The guest app is the little website each guest opens on their phone during their
 
 !> **Keep your password to yourself** Every manager has their own account, so the admin can show who approved or declined each booking. Never share an account. If you forget your password, use *Lost your password?* on the login screen.
 
-!> **Keep the login address private** The usual WordPress addresses (`/wp-login.php`, `/wp-admin`) show a “page not found” error on purpose, so automated attacks cannot find the login. Never share the private address outside the team, and never post it in a group chat or document. If you lose it, write to [support](/en/support).
+!> **Keep the login address within the team** The usual WordPress addresses (`/wp-login.php`, `/wp-admin`) show a “page not found” error on purpose, so automated attacks cannot find the login. Do not share the team address outside East Winds, and do not post it on social media or in public chats.
 
-?> **The address will change** The site still runs on a temporary address. When the resort moves to its final domain, you will receive the new login address.
+?> **Launch address** `guest.eastwinds.com` is the app's address from launch. Until then, the team trains on a test copy of the app; Hook + Ladder will tell you when the launch address is ready.
 
 ## Your menu
 
