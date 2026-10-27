@@ -176,6 +176,19 @@ Notifications for new booking requests and guest messages are emailed to the fro
 - If the MCP connects with **0 tools**, or the CLI reports *"OAuth metadata is malformed or unavailable"*, Imunify is blocking the current public IP (the site answers with its "One moment, please…" challenge page). Whitelist that IP in Cloudways (preferably the whole /24) and retry. Never send bursts of parallel requests: they trigger a hard block.
 - Novamira keeps a **memory** inside WordPress with project notes, product rules and open items. Agents should read it at the start of a session.
 
+### 6.4 Launch checklist (live app on `guest.eastwinds.com`)
+The live version is a different Cloudways app from this staging site, so nothing configured here carries over by itself. Before the team or any guest uses it, check that the live app has:
+- **EW Stay Access** at the staging version, including `security.php`, `dev-tools-guard.php` and `admin-tweaks.php`, and no `.bak` files inside the plugin.
+- **Settings > Reading:** search engines discouraged; no sitemap, no `/wp/v2/stay` and no `/wp/v2/users` for visitors.
+- **WPS Hide Login** with the slug `903ewr-staff-login` (the manual publishes `https://guest.eastwinds.com/903ewr-staff-login/`), and `/wp-login.php` returning 404.
+- **Simple History** active; Role-GenX roles and menu order as on staging; the PWA settings and icons.
+- **Real stays only:** create them on the live app (16-character tokens); the staging test stays and their links never move to production.
+- **Imunify Bot Protection** reviewed for the new domain (it drops the private-link path on a first visit), and WP-Cron moved to a server cron.
+- A final check with the manual's test flow: open a stay link, complete check-in, request a booking, approve and decline it as a Manager.
+
+### 6.5 Test data on staging
+Three test stays (Judith Tester, Mario Balbas, Ali Leon) and the 25 menus are dated **27 October – 3 November 2026**; the other test stays were moved to the Trash on 27 October. When they expire, re-date them (convention 7) instead of creating new ones. The H&L administrator account used before 15 October was replaced by a new H&L team account on that date.
+
 ---
 
 ## 7. Known limitations and open items
@@ -188,9 +201,9 @@ Notifications for new booking requests and guest messages are emailed to the fro
 | My Stay renders empty after check-out | Past guests see a blank screen | Add a post-stay state |
 | Island cards edited inside Resort Settings | No drafts, scheduling or revisions | Optional move to an "Island Guide" CPT |
 | Resort Manager role keeps `manage_options` **by decision** (the Manager runs the whole app) | Plugin AJAX handlers that check only that capability, and any plugin installed later, are reachable by staff | Known developer routes are refused in `dev-tools-guard.php`; check every new plugin's AJAX and REST routes against the Manager role before installing it |
-| No 2FA and no login-attempt limit | Password guessing relies on the private login address and Imunify | Add a login limiter or 2FA before the public launch |
+| No 2FA and no login-attempt limit | The login address is published in the manual, so only passwords and Imunify stop password guessing | Add a login limiter or 2FA before the public launch |
 | Guest email on decline | On stand-by (not discarded) | Reuse the decline-reason text when it comes back |
-| Temporary Cloudways domain | Private links, and the QR codes East Winds prints in welcome letters, will change | Move to the final domain before any letter for real guests is printed |
+| Staging on a temporary Cloudways domain | Private links, and the QR codes East Winds prints in welcome letters, change when the live app opens on `guest.eastwinds.com` | No welcome letters for real guests until launch; then run the launch checklist (6.4) |
 | Media placeholders still in use | Some items share demo photos | Replace with real photography |
 
 ### 7.1 Scope: V1 and V2 (agreed 16 October 2026)
