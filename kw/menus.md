@@ -14,6 +14,7 @@ Chak manjé chak jou sé on bagay adan **Daily Content**. App-la ka montwé manj
 | **Menu Items** | Yon lign pou chak sèksyon manjé-a (pa égzanp *Appetizers*, *Main Course*). Mété non sèksyon-an adan **Dish Name** épi plat li adan **Description**, yon plat pou chak lign (pézé Enter ant chak plat). Sèvi bouton-an anba lis-la pou mété on nouvo lign, épi tiwé lign yo pou chanjé lòd yo |
 | **Wine Pairing** / **Cocktail of the Day** | Si ou vlé |
 | **Featured** | Ka mété manjé-sala an avan asou Today épi Dining |
+| **Featured image** (kolonn a dwèt) | Foto-a anlè kat manjé-a asou Today épi anlè paj manjé-a. Sèvi on foto kouché restoran-an oben plat yo. San yonn, kat-la pa ka montwé foto |
 
 <figure><img src="assets/img/menu-edit.webp" alt="On manjé aswè ki ka chanjé, épi plat li"><figcaption>On manjé aswè épi plat li.</figcaption></figure>
 
@@ -25,7 +26,9 @@ Pifò manjé ni plizyè chwa pou chak sèvis. Ékwi yon lign pou chak sèvis:
 |---|---|
 | Appetizers | Vietnamese Spring Rolls with Sweet Chili Sauce (sf)<br>Duck Breast Salad with Walnut Dressing (n)(df)(gf)<br>Fish Skewers with Capers and Cream Sauce (gf) |
 
-App-la ka montwé non sèksyon-an kon on tit, épi chak lign déskwipsyon-an asou lign pa'y. On lign vid ka kité on ti espas, sa itil pou nòt kon menu key-la.
+App-la ka montwé non sèksyon-an kon on tit, épi chak lign déskwipsyon-an kon on plat ak pwen pa'y, kon sa ou pa bizwen tapé pwen yo. On déskwipsyon ki ni on lign vid, oben yon sèl fwaz, ka paèt kon on nòt, kon ou ékwi'y: sèvi sa pou menu key-la oben nòt pou alèji.
+
+Asou **Today**, chak kat manjé ka montwé on ti gou manjé-a: prèmyé plat chak sèksyon, jis twa. Mété plat ou vlé envité wè an prèmyé anlè chak sèksyon.
 
 ?> **Konsèy** Si ou kopyé on manjé ki sòti an on dokiman Word oben PDF, lign yo sa kolé ansanm. Si plat yo ka paèt asou yon sèl lign an app-la, ouvè manjé-a épi pézé Enter ant yo.
 
