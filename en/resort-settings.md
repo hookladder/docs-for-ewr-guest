@@ -18,7 +18,14 @@ One page holds all resort-wide content. Open **Resort Settings**, open the secti
 
 ## Island guide cards
 
-Each card has a **Title**, an **Image** and a **Description**. The order of the rows is the order in the app; drag a row to move it. Every card ends with a *Plan this with us* button that sends a message to the desk.
+Each card has a **Title**, an **Image**, a **Description** and a **Blog post URL**. The order of the rows is the order in the app; drag a row to move it.
+
+The card's button depends on the **Blog post URL**:
+
+- **With a URL** (an article on eastwinds.com), the card ends with *Read the full guide ↗*, which opens that article in a new tab, like the other links to the resort website on the Resort screen.
+- **Without a URL**, the card ends with *Plan this with us*, which sends a message to the desk.
+
+?> **Tip** Paste the full address of the article, starting with `https://`. Open it once in your browser to check it works before saving.
 
 <figure><img src="assets/img/resort-island.webp" alt="The Island and Things to Do rows in Resort Settings"><figcaption>Island cards, one row each.</figcaption></figure>
 

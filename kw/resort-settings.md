@@ -18,7 +18,14 @@ Yon sèl paj ka kenbé tout enfòmasyon pou tout resort-la. Ouvè **Resort Setti
 
 ## Kat gid lil-la
 
-Chak kat ni on **Title**, on **Image** épi on **Description**. Lòd lign yo sé lòd-la an app-la; tiwé on lign pou bougé'y. Chak kat ka fini ak on bouton *Plan this with us* ki ka voyé on mésaj ba desk-la.
+Chak kat ni on **Title**, on **Image**, on **Description** épi on **Blog post URL**. Lòd lign yo sé lòd-la an app-la; tiwé on lign pou bougé'y.
+
+Bouton kat-la ka dépann di **Blog post URL**-la:
+
+- **Ak on URL** (on atik asou eastwinds.com), kat-la ka fini ak *Read the full guide ↗*, ki ka ouvè atik-la adan on nouvo onglè, kon lòt lyen pou sit wèb resort-la asou ékwan Resort-la.
+- **San URL**, kat-la ka fini ak *Plan this with us*, ki ka voyé on mésaj ba desk-la.
+
+?> **Konsèy** Kolé tout adwès atik-la, ki ka koumansé ak `https://`. Ouvè'y yon fwa adan navigatè ou pou gadé si i ka mawché avan ou sové.
 
 <figure><img src="assets/img/resort-island.webp" alt="Lign Island and Things to Do yo adan Resort Settings"><figcaption>Kat lil-la, yon lign pou chak.</figcaption></figure>
 
