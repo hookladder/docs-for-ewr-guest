@@ -1,9 +1,9 @@
 # East Winds Resort — Guest App: Project Context
 
 **Client:** East Winds Resort, St Lucia · **Built by:** Hook & Ladder, inc. (H&L Digital)
-**Status:** Staging, hardened for a soft release; the resort team is training with the staff manual · **Last updated:** 27 October 2026
+**Status:** Soft release live since 27 October 2026; development continues on staging · **Last updated:** 3 November 2026
 **Staging (this work):** `https://wordpress-1587086-6643085.cloudwaysapps.com` (Cloudways)
-**Production (from launch):** `https://guest.eastwinds.com` (today it still points to a different Cloudways app, `…-6637015`; the live version will be served there)
+**Production (live):** `https://guest.eastwinds.com` (a separate Cloudways app; Novamira is switched off there)
 **Staff manual:** <https://staffdocs.eastwinds.com> (this repository, `hookladder/docs-for-ewr-guest`)
 
 This document is the starting point for anyone (person or AI agent) picking up the project. It explains why the app exists, how guests and staff use it, how it is built, and the constraints that are easy to miss. It deliberately stays at product and architecture level; implementation detail lives in the docblocks of each file referenced below.
@@ -125,13 +125,13 @@ Notifications for new booking requests and guest messages are emailed to the fro
 | `page-transition.php` | "Loading East Winds…" screen between page loads |
 | `admin-tweaks.php` | Removes Preview / View (button, permalink box, row action, admin-bar item) for menus, alerts and offers, which have no page of their own and are only shown inside other app screens |
 | `dev-tools-guard.php` | Treats anyone without `install_plugins` as staff. Hides the Novamira admin-bar switch, refuses Novamira's admin-post / AJAX actions, and refuses staff REST writes to developer tools: Novamira, MCP and the core Abilities API (which run PHP), AI proxies, the JetEngine builder, `/wp/v2/settings`, and Elementor or plugin settings. Role-GenX leaves admin-post, AJAX and REST alone, so this file covers them |
-| `security.php` | Keeps stays unlisted (out of REST, search and sitemaps; an old stay slug never redirects to a rotated token), hides usernames from visitors (REST users, author archives), sends Referrer-Policy, nosniff, X-Frame-Options and HSTS, and disables the file editors |
+| `security.php` | Answers signed-out visits to `/wp-admin` and `/wp-login.php` with WordPress's plain "Access denied" (403) instead of an app page; keeps stays unlisted (out of REST, search and sitemaps; an old stay slug never redirects to a rotated token), hides usernames from visitors (REST users, author archives), sends Referrer-Policy, nosniff, X-Frame-Options and HSTS, and disables the file editors |
 
 ### 4.4 Data model (JetEngine)
 - **CPTs:** `stay`, `room`, `excursion`, `ew_exc_booking` (private), `ew_desk_message` (private), `daily-content`, `offer`, `alert`.
 - **Taxonomy:** `excursion_category`, **hierarchical**. *Spa & Wellness* has the treatment sub-categories; being in one of those children is what makes an item a "spa treatment".
 - **Options page:** `resort-settings` (all resort-wide content).
-- **Key meta:** stay dates and token on `stay`; `recurrence_mode`, `schedule_date`, `spots_available` (the capacity staff edit; legacy hidden `capacity` is only a fallback), `price`, `excursion_type` on `excursion`; `status`, `guests_count`, `decline_reason` on bookings; `content_date`, `meal` on daily content (`breakfast`, `lunch`, `afternoon_tea`, `dinner`; labels and service windows in `ew_meals()` / `ew_meals_now()` in `shortcodes-extra.php`). One menu per meal per day; Afternoon Tea shows from 11:00 alongside lunch and is served at the time set in Resort Settings.
+- **Key meta:** stay dates, token and `staff_preview` (switcher; added to the JetEngine meta box from code, see `booking-engine.php`) on `stay`; `is_preview` on bookings and desk messages that come from a preview stay; `recurrence_mode`, `schedule_date`, `spots_available` (the capacity staff edit; legacy hidden `capacity` is only a fallback), `price`, `excursion_type` on `excursion`; `status`, `guests_count`, `decline_reason` on bookings; `content_date`, `meal` on daily content (`breakfast`, `lunch`, `afternoon_tea`, `dinner`; labels and service windows in `ew_meals()` / `ew_meals_now()` in `shortcodes-extra.php`). One menu per meal per day; Afternoon Tea shows from 11:00 alongside lunch and is served at the time set in Resort Settings. Menus are written one repeater row per section (*Dish Name* = section, *Description* = one dish per line); the description is shown with `white-space: pre-line`, so the line breaks staff type are kept.
 
 ### 4.5 Front-end composition
 - Pages: Today (front page), Explore, Book, My Stay, Resort, Menu, Hosts.
@@ -160,7 +160,7 @@ Notifications for new booking requests and guest messages are emailed to the fro
 - **Shared server: 2 CPUs and ~4 GB RAM** hosting other applications. Every uncached WordPress boot costs ~1.2 s of CPU, so bursts of admin traffic can saturate it.
 - **Imunify360 Bot Protection** is active. It blocks automation (the Novamira MCP) from IPs that are not whitelisted, and its JavaScript challenge **drops the private-link path on redirect**, so a guest opening their link for the first time from a non-whitelisted network can land without a session. Recommendation: **disable Bot Protection for this app**, or have Cloudways exclude the app's routes and `/wp-json/mcp/novamira`.
 - **Hardening (27 October 2026):** search engines are discouraged (Settings > Reading, plus `noindex` on every page), sitemaps and the REST users endpoint are off for visitors, security headers are set, and the old `.bak` copies inside the plugin were removed (they were downloadable as source; their content is kept in the non-autoloaded option `ew_backup_bak_files_20261027`).
-- **Login:** WPS Hide Login moves the login to `/903ewr-staff-login/`; `/wp-login.php` and `/wp-admin` (signed out) return 404. By decision (27 October 2026) the team address is published in the manual (`https://guest.eastwinds.com/903ewr-staff-login/`), so the live site must use the same slug. Novamira is unaffected (it authenticates through REST).
+- **Login:** WPS Hide Login moves the login to `/903ewr-staff-login/`; signed out, `/wp-login.php` and `/wp-admin` return WordPress's plain "Access denied" (403, from `security.php`), never an app page. By decision (27 October 2026) the team address is published in the manual (`https://guest.eastwinds.com/903ewr-staff-login/`), so the live site must use the same slug. Novamira is unaffected (it authenticates through REST).
 - **Manual gate:** only `resortmanager@eastwinds.com` and `dev-admin@hldigital.ca` pass the courtesy form of the staff manual (stored as SHA-256 fingerprints). It is not access control: the manual's files are public.
 - **Activity log:** Simple History records sign-ins and changes, visible to administrators only.
 - **Desk messages:** only a guest with a valid stay session can send one, at most 10 per hour, so the form cannot be used to spam the front desk mailbox.
@@ -186,8 +186,12 @@ The live version is a different Cloudways app from this staging site, so nothing
 - **Imunify Bot Protection** reviewed for the new domain (it drops the private-link path on a first visit), and WP-Cron moved to a server cron.
 - A final check with the manual's test flow: open a stay link, complete check-in, request a booking, approve and decline it as a Manager.
 
-### 6.5 Test data on staging
-Three test stays (Judith Tester, Mario Balbas, Ali Leon) and the 25 menus are dated **27 October – 3 November 2026**; the other test stays were moved to the Trash on 27 October. When they expire, re-date them (convention 7) instead of creating new ones. The H&L administrator account used before 15 October was replaced by a new H&L team account on that date.
+### 6.5 Staff preview and test data on staging
+- **Staff preview:** a stay with the *Staff preview* switcher on lets the team use the app as a guest on their own phones. Its booking requests and desk messages are titled `[Preview]`, send no email to the front desk, and requests take no spots; they still reach the admin queues so the team can practise. On staging, **Team Preview** runs until 31 December 2027 (create the same on the live app; never copy links between sites).
+- **Test stays:** Judith Tester, Mario Balbas and Ali Leon expired on 3 November 2026; *Judith Milne* is a stay created by the resort team. Menus follow the resort's real entries. Re-date rather than duplicate (convention 7). The H&L administrator account used before 15 October was replaced by a new H&L team account on that date.
+
+### 6.6 Deploying to the live app
+Development happens on staging; Ali deploys with a Cloudways **file** sync (staging → live, *Web Application Files* only, never the database, which would overwrite the resort's real content). So every change must live in the plugin's files: settings or JetEngine fields that a feature needs are created from code on first admin load (as the `staff_preview` field is), not by hand in the database.
 
 ---
 

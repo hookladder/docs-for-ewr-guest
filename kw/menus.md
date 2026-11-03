@@ -11,11 +11,23 @@ Chak manjé chak jou sé on bagay adan **Daily Content**. App-la ka montwé manj
 | **Title** | Non restoran-an épi répa-a, pa égzanp “Bird of Paradise Restaurant — Lunch”. I ka édé ékip-la jwenn manjé-a adan lis-la; envité pa ka wè'y |
 | **Content Date** | Jou yo ka sèvi manjé-sala |
 | **Meal** | Breakfast (bonmaten), Lunch (midi), Afternoon Tea oben Dinner (aswè). Afternoon Tea ka paèt an app-la dépi midi jis 5è |
-| **Menu Items** | Yon lign pou chak plat. Sèvi bouton-an anba lis-la pou mété on nouvo lign, épi tiwé lign yo pou chanjé lòd yo |
+| **Menu Items** | Yon lign pou chak sèksyon manjé-a (pa égzanp *Appetizers*, *Main Course*). Mété non sèksyon-an adan **Dish Name** épi plat li adan **Description**, yon plat pou chak lign (pézé Enter ant chak plat). Sèvi bouton-an anba lis-la pou mété on nouvo lign, épi tiwé lign yo pou chanjé lòd yo |
 | **Wine Pairing** / **Cocktail of the Day** | Si ou vlé |
 | **Featured** | Ka mété manjé-sala an avan asou Today épi Dining |
 
 <figure><img src="assets/img/menu-edit.webp" alt="On manjé aswè ki ka chanjé, épi plat li"><figcaption>On manjé aswè épi plat li.</figcaption></figure>
+
+## Ékwi on manjé pa sèksyon
+
+Pifò manjé ni plizyè chwa pou chak sèvis. Ékwi yon lign pou chak sèvis:
+
+| Dish Name | Description |
+|---|---|
+| Appetizers | Vietnamese Spring Rolls with Sweet Chili Sauce (sf)<br>Duck Breast Salad with Walnut Dressing (n)(df)(gf)<br>Fish Skewers with Capers and Cream Sauce (gf) |
+
+App-la ka montwé non sèksyon-an kon on tit, épi chak lign déskwipsyon-an asou lign pa'y. On lign vid ka kité on ti espas, sa itil pou nòt kon menu key-la.
+
+?> **Konsèy** Si ou kopyé on manjé ki sòti an on dokiman Word oben PDF, lign yo sa kolé ansanm. Si plat yo ka paèt asou yon sèl lign an app-la, ouvè manjé-a épi pézé Enter ant yo.
 
 ## Pwépawé manjé pwochen simenn
 

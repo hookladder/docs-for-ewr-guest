@@ -22,6 +22,7 @@ A **Stay** is one guest's visit: who they are, which room, and the dates. Each s
 | Traveling With Agent, Family Foundation Opt-In, Water Sports Waiver Accepted | Filled in by the guest at check-in. You can correct them |
 | Housekeeping Frequency, Extra Pillows, Restock Minibar Wine, Special Requests | Housekeeping preferences. The guest changes them in **My Stay**, and you see their answers here. If you change them here, the guest sees your change. They are the same data |
 | Upgrade Interest Note | Filled in when a guest shows interest in an upgrade |
+| **Staff preview** | Only for test stays used by the team. See [Staff preview](/en/stays?id=staff-preview-see-the-app-as-a-guest) |
 
 ## Send the private link
 
@@ -41,6 +42,22 @@ A **Stay** is one guest's visit: who they are, which room, and the dates. Each s
 2. Press **Update**. The guest's link keeps working; only what they see changes.
 
 Example: Judith's stay says *Check-in 13 October*. If she arrives a day late, change it to 14 October and press Update. Until then her app shows the pre-arrival welcome; on the 14th it opens completely. Set the check-out to yesterday and she is no longer on property.
+
+## Staff preview: see the app as a guest
+
+The team can use the app on their own phones, exactly as a guest sees it, through a **staff preview stay**. One already exists: **Team Preview**, valid until 31 December 2027.
+
+1. Open **Stays → Team Preview** and copy its private link (the **Permalink**).
+2. Open the link on your phone, in Safari (iPhone) or Chrome (Android). Check-in is already done.
+3. In **My Stay**, tap **Get East Winds on your device** to add the app to your home screen.
+4. Make a change in the admin (a menu, an alert, an experience) and check it on your phone.
+
+The stay has **Staff preview** switched on (in **Stay Details**). Everything it does is marked **[Preview]** and has no effect on real guests:
+
+- Booking requests appear in **Exc. Bookings** as *[Preview] Team Preview — …*. They take no spots and send no email, so you can practise approving and declining them. Move them to the Trash when you finish.
+- Messages to the desk appear in **Desk Messages** as *[Preview] …* and send no email.
+
+!> **Keep the link within the team** Anyone with the Team Preview link can open the app and send preview requests. If someone leaves the team, ask [support](/en/support) to change the link. To create another preview stay (for example, to see the screen before arrival), make a normal stay with the dates you need and switch **Staff preview** on.
 
 ## When a guest leaves
 
