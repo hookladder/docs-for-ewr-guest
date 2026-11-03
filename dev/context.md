@@ -1,7 +1,7 @@
 # East Winds Resort — Guest App: Project Context
 
 **Client:** East Winds Resort, St Lucia · **Built by:** Hook & Ladder, inc. (H&L Digital)
-**Status:** Soft release live since 27 October 2026; Phase 1 (weather modal, screen skeletons, alert types) on staging · **Last updated:** 3 November 2026
+**Status:** Soft release live since 27 October 2026; Phase 1 built on staging, waiting for the file sync to live · **Last updated:** 4 November 2026
 **Staging (this work):** `https://wordpress-1587086-6643085.cloudwaysapps.com` (Cloudways)
 **Production (live):** `https://guest.eastwinds.com` (a separate Cloudways app; Novamira is switched off there)
 **Staff manual:** <https://staffdocs.eastwinds.com> (this repository, `hookladder/docs-for-ewr-guest`)
@@ -211,7 +211,7 @@ Development happens on staging; Ali deploys with a Cloudways **file** sync (stag
 | No 2FA and no login-attempt limit | The login address is published in the manual, so only passwords and Imunify stop password guessing | Add a login limiter or 2FA before the public launch |
 | Guest email on decline | On stand-by (not discarded) | Reuse the decline-reason text when it comes back |
 | Staging on a temporary Cloudways domain | Private links, and the QR codes East Winds prints in welcome letters, change when the live app opens on `guest.eastwinds.com` | No welcome letters for real guests until launch; then run the launch checklist (6.4) |
-| Media placeholders still in use | Some items share demo photos | Replace with real photography |
+| Media placeholders still in use | Some items share demo photos; the lunch and dinner menus still use placeholders 317 and 320, and the Afternoon Tea menu has no photo | Replace with real photography (menus now have a Featured Image box) |
 
 ### 7.1 Scope: V1 and V2 (agreed 16 October 2026)
 
@@ -229,6 +229,23 @@ After the resort's first round of feedback (Judith, 16 October), the line betwee
 | Guest instruction card, Spa & Excursion flyers, generated welcome letter with QR | **V2, design team** | Needs a designed template plus a printable-format build |
 
 The commercial line for V1 is not closed yet; anything outside the V1 rows needs a proposal before work starts.
+
+
+### 7.2 Phase 1 (from the prioritization matrix, 3–4 November 2026)
+
+| Item | Status | Where |
+|---|---|---|
+| Interactive weather modal (now, 12 hours, 5 days, sun, sea; °F/°C) | **Done on staging** | `weather.php` |
+| Skeleton transitions between screens, prefetch on touch | **Done on staging** | `page-transition.php` |
+| Alerts by type and tone (replaces the standalone announcement banner) | **Done on staging** | `alerts.php`, migrations |
+| Back button skipping a screen on a fast double tap (bug) | **Fixed on staging** | `page-transition.php`, migration for template 183 |
+| Staff preview stay (Team Preview) | **Done on staging** | `booking-engine.php`, `hosts.php` |
+| Menus: bullets per dish, Today highlights, menu photos | **Done on staging** | `shortcodes-extra.php` |
+| Island cards link to their blog post | **Done on staging** | `resort.php`, migrations |
+| Smart PWA install prompt | **Pending** | PWA WP Router (H&L plugin) |
+| Branded HTML emails | **Later** | Needs a reliable SMTP first; pairs with the V2 in-app replies and the decline email |
+
+**Pending file sync to the live app** (Cloudways, files only), all under `wp-content/plugins/ew-stay-access/`: `ew-stay-access.php`, `includes/` `booking-engine.php`, `hosts.php`, `shortcodes-extra.php`, `resort.php`, `page-transition.php`, `weather.php` (new), `alerts.php` (new), `migrations.php` (new), and `assets/ew-app.css`. After the sync, the first admin page load runs the migrations; then create a *Team Preview* stay on the live app.
 
 ---
 
