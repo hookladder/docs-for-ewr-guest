@@ -27,7 +27,7 @@ Bouton kat-la ka dépann di **Blog post URL**-la:
 
 ?> **Konsèy** Kolé tout adwès atik-la, ki ka koumansé ak `https://`. Ouvè'y yon fwa adan navigatè ou pou gadé si i ka mawché avan ou sové.
 
-<figure><img src="assets/img/resort-island.webp" alt="Lign Island and Things to Do yo adan Resort Settings"><figcaption>Kat lil-la, yon lign pou chak.</figcaption></figure>
+<figure><img src="assets/img/resort-island.webp" alt="Lign Island and Things to Do yo adan Resort Settings"><figcaption>Kat lil-la, yon lign pou chak. <strong>Blog post URL</strong>-la (an wouj) sé atik kat-la ka ouvè.</figcaption></figure>
 
 Déskwipsyon-an ka aksepté on ti fòmatay sinp:
 

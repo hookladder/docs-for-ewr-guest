@@ -27,7 +27,7 @@ The card's button depends on the **Blog post URL**:
 
 ?> **Tip** Paste the full address of the article, starting with `https://`. Open it once in your browser to check it works before saving.
 
-<figure><img src="assets/img/resort-island.webp" alt="The Island and Things to Do rows in Resort Settings"><figcaption>Island cards, one row each.</figcaption></figure>
+<figure><img src="assets/img/resort-island.webp" alt="The Island and Things to Do rows in Resort Settings"><figcaption>Island cards, one row each. The <strong>Blog post URL</strong> (highlighted) is the article the card links to.</figcaption></figure>
 
 The description accepts simple formatting:
 
