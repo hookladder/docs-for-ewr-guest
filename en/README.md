@@ -17,7 +17,7 @@ The guest app is the little website each guest opens on their phone during their
 
 <figure><img src="assets/img/login.webp" alt="The WordPress login screen"><figcaption>The login screen.</figcaption></figure>
 
-!> **Keep your password to yourself** Every manager has their own account, so the admin can show who approved or declined each booking. Never share an account. If you forget your password, use *Lost your password?* on the login screen.
+!> **Keep the password within the team** The staff sign in with the shared **Resort Managers** account; managers who need their own account (such as Judith) have one. Never give the password to anyone outside the team, and ask [support](/en/support) to change it when someone leaves. If you forget it, use *Lost your password?* on the login screen.
 
 !> **Keep the login address within the team** The usual WordPress addresses (`/wp-login.php`, `/wp-admin`) show a “page not found” error on purpose, so automated attacks cannot find the login. Do not share the team address outside East Winds, and do not post it on social media or in public chats.
 

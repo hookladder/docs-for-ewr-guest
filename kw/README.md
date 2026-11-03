@@ -19,7 +19,7 @@ App envité-a sé ti sit wèb-la chak envité ka ouvè asou téléfòn yo pandan
 
 <figure><img src="assets/img/login.webp" alt="Ékwan pou antwé an WordPress"><figcaption>Ékwan pou antwé-a.</figcaption></figure>
 
-!> **Pa bay pèsonn password ou** Chak manadjè ni kont pa yo, kon sa admin-lan sa montwé kilès ki aksepté oben wifizé chak booking. Pa janmen pataj on kont. Si ou bliyé password ou, sèvi *Lost your password?* asou ékwan pou antwé-a.
+!> **Kenbé password-la andidan ékip-la** Staf-la ka antwé ak kont **Resort Managers** yo ka pataj-la; manadjè ki bizwen kont pa yo (kon Judith) ni yonn. Pa janmen bay password-la pèsonn andéwò ékip-la, épi mandé [sipò](/kw/support) chanjé'y lè on moun ka kité ékip-la. Si ou bliyé'y, sèvi *Lost your password?* asou ékwan pou antwé-a.
 
 !> **Kenbé adwès pou antwé-a andidan ékip-la** Adwès WordPress dabitid yo (`/wp-login.php`, `/wp-admin`) ka montwé “page not found” èspwé, kon sa atak otomatik pa sa jwenn koté pou antwé-a. Pa bay adwès ékip-la pèsonn andéwò East Winds, épi pa mété'y asou rézo sosyal oben adan chat piblik.
 

@@ -80,7 +80,7 @@ On the first visit while on property, a **blocking check-in gate** collects cont
 | **PWA WP Router** | App name, icon, colours and install-button styling |
 | **Role-GenX** | Admin sidebar order and custom roles |
 
-**Resort Manager role** (Role-GenX): sees only the resort's content types, Media and Resort Settings, with the URL guard blocking everything else. Anyone who cannot install plugins is also treated as staff by `dev-tools-guard.php`, which hides the Novamira switch and refuses its actions. One account per person, never shared; an H&L test Manager account is used for the manual's screenshots. Usernames and passwords are never written in this repository, which is public.
+**Resort Manager role** (Role-GenX): sees only the resort's content types, Media and Resort Settings, with the URL guard blocking everything else. Anyone who cannot install plugins is also treated as staff by `dev-tools-guard.php`, which hides the Novamira switch and refuses its actions. The resort staff share one Resort Manager account (Resort Managers); managers who need traceability have personal accounts. Simple History therefore records staff actions under the shared account. An H&L test Manager account is used for the manual's screenshots. Usernames and passwords are never written in this repository, which is public.
 
 **Staff manual:** <https://staffdocs.eastwinds.com>, in English and Saint Lucian Kwéyòl (draft, pending native review). Docsify site published by GitHub Pages from `main` of this repository; work goes to `new-version-incoming` and reaches `main` through a reviewed pull request. Commits are authored by Ali Leon only (no AI co-author line), so a person stays accountable at handover. See the root `README.md` for editing and publishing.
 
@@ -188,7 +188,7 @@ The live version is a different Cloudways app from this staging site, so nothing
 
 ### 6.5 Staff preview and test data on staging
 - **Staff preview:** a stay with the *Staff preview* switcher on lets the team use the app as a guest on their own phones. Its booking requests and desk messages are titled `[Preview]`, send no email to the front desk, and requests take no spots; they still reach the admin queues so the team can practise. On staging, **Team Preview** runs until 31 December 2027 (create the same on the live app; never copy links between sites).
-- **Test stays:** Judith Tester, Mario Balbas and Ali Leon expired on 3 November 2026; *Judith Milne* is a stay created by the resort team. Menus follow the resort's real entries. Re-date rather than duplicate (convention 7). The H&L administrator account used before 15 October was replaced by a new H&L team account on that date.
+- **Test stays:** Judith Tester, Mario Balbas and Ali Leon are kept for testing and were re-dated to 3–10 November 2026; *Judith Milne* is a stay created by the resort team. **Team Preview** is the stay the staff install on their phones to check the UI. Menus follow the resort's real entries. Re-date rather than duplicate (convention 7). The H&L administrator account used before 15 October was replaced by a new H&L team account on that date.
 
 ### 6.6 Deploying to the live app
 Development happens on staging; Ali deploys with a Cloudways **file** sync (staging → live, *Web Application Files* only, never the database, which would overwrite the resort's real content). So every change must live in the plugin's files: settings or JetEngine fields that a feature needs are created from code on first admin load (as the `staff_preview` field is), not by hand in the database.
