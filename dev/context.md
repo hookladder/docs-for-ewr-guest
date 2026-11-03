@@ -1,7 +1,7 @@
 # East Winds Resort — Guest App: Project Context
 
 **Client:** East Winds Resort, St Lucia · **Built by:** Hook & Ladder, inc. (H&L Digital)
-**Status:** Soft release live since 27 October 2026; development continues on staging · **Last updated:** 3 November 2026
+**Status:** Soft release live since 27 October 2026; Phase 1 (weather modal, screen skeletons, alert types) on staging · **Last updated:** 3 November 2026
 **Staging (this work):** `https://wordpress-1587086-6643085.cloudwaysapps.com` (Cloudways)
 **Production (live):** `https://guest.eastwinds.com` (a separate Cloudways app; Novamira is switched off there)
 **Staff manual:** <https://staffdocs.eastwinds.com> (this repository, `hookladder/docs-for-ewr-guest`)
@@ -121,14 +121,17 @@ Notifications for new booking requests and guest messages are emailed to the fro
 | `book.php` | My Bookings (status and decline reason) |
 | `resort.php` | Resort page sections and Island guide cards, all from Resort Settings |
 | `hosts.php` | Hosts page, "Say hello" messaging, Desk Messages unread tracking |
-| `offer.php`, `shortcodes-extra.php` | Offers, menus, weather, small app shortcodes |
-| `page-transition.php` | "Loading East Winds…" screen between page loads |
+| `offer.php`, `shortcodes-extra.php` | Offers, menus (one row per section, line breaks kept), the back button, small app shortcodes |
+| `weather.php` | One cached Open-Meteo forecast (+ Marine) feeds the Today badge and the weather modal: now, next 12 hours, 5 days, sunrise and sunset, sea. Metric in the data, °F/°C chosen by the guest and remembered on the phone. On failure it shows the last good result, never invented numbers |
+| `alerts.php` | `[ew_alerts]` on Today: active alerts inside their window, at most three, urgent first, one tone per type (urgent, weather, information, event), as a swipeable carousel |
+| `page-transition.php` | Skeleton of the destination screen while the next page loads (the tab bar stays on top), one navigation per back-button tap (a fast double tap used to skip a screen), and Speculation Rules prefetch on touch |
+| `migrations.php` | One-time database changes applied on the first admin load after a file sync (see 6.6) |
 | `admin-tweaks.php` | Removes Preview / View (button, permalink box, row action, admin-bar item) for menus, alerts and offers, which have no page of their own and are only shown inside other app screens |
 | `dev-tools-guard.php` | Treats anyone without `install_plugins` as staff. Hides the Novamira admin-bar switch, refuses Novamira's admin-post / AJAX actions, and refuses staff REST writes to developer tools: Novamira, MCP and the core Abilities API (which run PHP), AI proxies, the JetEngine builder, `/wp/v2/settings`, and Elementor or plugin settings. Role-GenX leaves admin-post, AJAX and REST alone, so this file covers them |
 | `security.php` | Answers signed-out visits to `/wp-admin` and `/wp-login.php` with WordPress's plain "Access denied" (403) instead of an app page; keeps stays unlisted (out of REST, search and sitemaps; an old stay slug never redirects to a rotated token), hides usernames from visitors (REST users, author archives), sends Referrer-Policy, nosniff, X-Frame-Options and HSTS, and disables the file editors |
 
 ### 4.4 Data model (JetEngine)
-- **CPTs:** `stay`, `room`, `excursion`, `ew_exc_booking` (private), `ew_desk_message` (private), `daily-content`, `offer`, `alert`.
+- **CPTs:** `stay`, `room`, `excursion`, `ew_exc_booking` (private), `ew_desk_message` (private), `daily-content`, `offer`, `alert` (its `urgency` meta is shown to staff as **Type**: `urgent`, `routine` = Information, `weather`, `event`).
 - **Taxonomy:** `excursion_category`, **hierarchical**. *Spa & Wellness* has the treatment sub-categories; being in one of those children is what makes an item a "spa treatment".
 - **Options page:** `resort-settings` (all resort-wide content).
 - **Key meta:** stay dates, token and `staff_preview` (switcher; added to the JetEngine meta box from code, see `booking-engine.php`) on `stay`; `is_preview` on bookings and desk messages that come from a preview stay; `recurrence_mode`, `schedule_date`, `spots_available` (the capacity staff edit; legacy hidden `capacity` is only a fallback), `price`, `excursion_type` on `excursion`; `status`, `guests_count`, `decline_reason` on bookings; `content_date`, `meal` on daily content (`breakfast`, `lunch`, `afternoon_tea`, `dinner`; labels and service windows in `ew_meals()` / `ew_meals_now()` in `shortcodes-extra.php`). One menu per meal per day; Afternoon Tea shows from 11:00 alongside lunch and is served at the time set in Resort Settings. Menus are written one repeater row per section (*Dish Name* = section, *Description* = one dish per line); the description is shown with `white-space: pre-line`, so the line breaks staff type are kept.
@@ -191,7 +194,7 @@ The live version is a different Cloudways app from this staging site, so nothing
 - **Test stays:** Judith Tester, Mario Balbas and Ali Leon are kept for testing and were re-dated to 3–10 November 2026; *Judith Milne* is a stay created by the resort team. **Team Preview** is the stay the staff install on their phones to check the UI. Menus follow the resort's real entries. Re-date rather than duplicate (convention 7). The H&L administrator account used before 15 October was replaced by a new H&L team account on that date.
 
 ### 6.6 Deploying to the live app
-Development happens on staging; Ali deploys with a Cloudways **file** sync (staging → live, *Web Application Files* only, never the database, which would overwrite the resort's real content). So every change must live in the plugin's files: settings or JetEngine fields that a feature needs are created from code on first admin load (as the `staff_preview` field is), not by hand in the database.
+Development happens on staging; Ali deploys with a Cloudways **file** sync (staging → live, *Web Application Files* only, never the database, which would overwrite the resort's real content). So every change must live in the plugin's files. Whatever a feature needs in the database (a JetEngine field, an Elementor template edit) is written as a one-time migration in `migrations.php`: it runs on the first admin page load after the sync, backs up what it changes (`ew_backup_migration_*`), is idempotent, and is recorded in `ew_migrations_done`. Current migrations: the Excursion Single back button (template 183), the alert **Type** field, and the Today alert grid replaced by `[ew_alerts]` (template 234). The `staff_preview` stay field is added the same way from `booking-engine.php`.
 
 ---
 
