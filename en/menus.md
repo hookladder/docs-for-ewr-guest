@@ -14,6 +14,7 @@ Each meal of each day is one item in **Daily Content**. The app shows today's me
 | **Menu Items** | One row per section of the menu (for example *Appetizers*, *Main Course*). Put the section name in **Dish Name** and its dishes in **Description**, one dish per line (press Enter between dishes). Use **+ Add item** for a new row, and drag rows to change the order |
 | **Wine Pairing** / **Cocktail of the Day** | Optional |
 | **Featured** | Highlights this menu on Today and Dining |
+| **Featured image** (right column) | The photo at the top of the menu card on Today and of the menu page. Use a landscape photo of the restaurant or the dishes. Without one, the card shows no photo |
 
 <figure><img src="assets/img/menu-edit.webp" alt="A dinner menu being edited, with its dishes"><figcaption>A dinner menu with its dishes.</figcaption></figure>
 
@@ -25,7 +26,9 @@ Most menus have several choices per course. Write one row per course:
 |---|---|
 | Appetizers | Vietnamese Spring Rolls with Sweet Chili Sauce (sf)<br>Duck Breast Salad with Walnut Dressing (n)(df)(gf)<br>Fish Skewers with Capers and Cream Sauce (gf) |
 
-The app shows the section name as a heading and every line of the description as its own line. A blank line leaves a space, which is useful for notes such as the menu key.
+The app shows the section name as a heading and every line of the description as a dish with its own bullet, so you do not need to type bullets yourself. A description with a blank line, or a single sentence, is shown as a note instead, as typed: use this for the menu key or allergy advice.
+
+On **Today**, each menu card shows a short taste of the menu: the first dish of each section, up to three. Put the dish you want guests to notice first at the top of each section.
 
 ?> **Tip** Copying a menu from a Word or PDF document can join the lines together. If dishes appear on one line in the app, open the menu and press Enter between them.
 
