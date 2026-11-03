@@ -11,11 +11,23 @@ Each meal of each day is one item in **Daily Content**. The app shows today's me
 | **Title** | The restaurant and meal, for example “Bird of Paradise Restaurant — Lunch”. It helps the team find the menu in the list; guests do not see it |
 | **Content Date** | The day this menu is served |
 | **Meal** | Breakfast, Lunch, Afternoon Tea or Dinner. Afternoon Tea shows in the app from lunchtime until 5pm |
-| **Menu Items** | One row per dish. Use **+ Add item** for a new row, and drag rows to change the order |
+| **Menu Items** | One row per section of the menu (for example *Appetizers*, *Main Course*). Put the section name in **Dish Name** and its dishes in **Description**, one dish per line (press Enter between dishes). Use **+ Add item** for a new row, and drag rows to change the order |
 | **Wine Pairing** / **Cocktail of the Day** | Optional |
 | **Featured** | Highlights this menu on Today and Dining |
 
 <figure><img src="assets/img/menu-edit.webp" alt="A dinner menu being edited, with its dishes"><figcaption>A dinner menu with its dishes.</figcaption></figure>
+
+## Writing a menu by sections
+
+Most menus have several choices per course. Write one row per course:
+
+| Dish Name | Description |
+|---|---|
+| Appetizers | Vietnamese Spring Rolls with Sweet Chili Sauce (sf)<br>Duck Breast Salad with Walnut Dressing (n)(df)(gf)<br>Fish Skewers with Capers and Cream Sauce (gf) |
+
+The app shows the section name as a heading and every line of the description as its own line. A blank line leaves a space, which is useful for notes such as the menu key.
+
+?> **Tip** Copying a menu from a Word or PDF document can join the lines together. If dishes appear on one line in the app, open the menu and press Enter between them.
 
 ## Prepare next week's menus
 

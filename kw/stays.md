@@ -22,6 +22,7 @@ On **Stay** sé vizit yon envité: kilès i yé, ki chanm, épi dat yo. Chak sè
 | Traveling With Agent, Family Foundation Opt-In, Water Sports Waiver Accepted | Envité-a ka ranpli yo lè i fè check-in. Ou sa korijé yo |
 | Housekeeping Frequency, Extra Pillows, Restock Minibar Wine, Special Requests | Sa envité-a vlé pou ménaj chanm-lan. Envité-a ka chanjé yo adan **My Stay**, épi ou ka wè répons yo isi-a. Si ou chanjé yo isi-a, envité-a ka wè chanjman ou. Sé menm enfòmasyon-an |
 | Upgrade Interest Note | I ka ranpli lè on envité montwé i enmé on upgrade |
+| **Staff preview** | Sèlman pou sèjou tès ékip-la ka sèvi. Gadé [Staff preview](/kw/stays?id=staff-preview-wè-app-la-kon-on-envité) |
 
 ## Voyé lyen prive-a
 
@@ -41,6 +42,22 @@ On **Stay** sé vizit yon envité: kilès i yé, ki chanm, épi dat yo. Chak sè
 2. Pézé **Update**. Lyen envité-a ka mawché toujou; sé sèlman sa i ka wè ki ka chanjé.
 
 Égzanp: sèjou Judith-la ka di *Check-in 13 Òktòb*. Si i ka wivé on jou an wita, chanjé'y pou 14 Òktòb épi pézé Update. Jis lè sa, app li ka montwé byenvini avan i wivé-a; 14-la, tout app-la ka ouvè. Mété check-out-la yè épi i pa an resort-la ankò.
+
+## Staff preview: wè app-la kon on envité
+
+Ékip-la sa sèvi app-la asou téléfòn pa yo, kon on envité ka wè'y, ak on **sèjou staff preview**. Ja ni yonn: **Team Preview**, ki bon jis 31 Désanm 2027.
+
+1. Ouvè **Stays → Team Preview** épi kopyé lyen prive'y (**Permalink**-la).
+2. Ouvè lyen-an asou téléfòn ou, adan Safari (iPhone) oben Chrome (Android). Check-in-lan ja fèt.
+3. Adan **My Stay**, touché **Get East Winds on your device** pou mété app-la asou ékwan dakèy ou.
+4. Chanjé on bagay adan admin-lan (on manjé, on alèt, on aktivité) épi gadé'y asou téléfòn ou.
+
+Sèjou-a ni **Staff preview** limen (adan **Stay Details**). Tout sa i ka fè ka mawké **[Preview]** épi pa ka touché vré envité:
+
+- Dimann booking ka paèt adan **Exc. Bookings** kon *[Preview] Team Preview — …*. Yo pa ka pwan plas épi yo pa ka voyé imél, kon sa ou sa éséyé aksepté épi wifizé yo. Mété yo an Trash lè ou fini.
+- Mésaj pou desk-la ka paèt adan **Desk Messages** kon *[Preview] …* épi yo pa ka voyé imél.
+
+!> **Kenbé lyen-an andidan ékip-la** Nenpòt moun ki ni lyen Team Preview-la sa ouvè app-la épi voyé dimann preview. Si on moun ka kité ékip-la, mandé [sipò](/kw/support) chanjé lyen-an. Pou fè on lòt sèjou preview (pa égzanp, pou wè ékwan avan envité-a wivé), fè on sèjou nòmal ak dat ou bizwen épi limen **Staff preview**.
 
 ## Lè on envité ka pati
 
