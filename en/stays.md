@@ -22,7 +22,9 @@ A **Stay** is one guest's visit: who they are, which room, and the dates. Each s
 | Traveling With Agent, Family Foundation Opt-In, Water Sports Waiver Accepted | Filled in by the guest at check-in. You can correct them |
 | Housekeeping Frequency, Extra Pillows, Restock Minibar Wine, Special Requests | Housekeeping preferences. The guest changes them in **My Stay**, and you see their answers here. If you change them here, the guest sees your change. They are the same data |
 | Upgrade Interest Note | Filled in when a guest shows interest in an upgrade |
-| **Staff preview** | Only for test stays used by the team. See [Staff preview](/en/stays?id=staff-preview-see-the-app-as-a-guest) |
+| **Staff preview** | **Leave it off for every guest.** Only for the team's test stays, such as *Team Preview*. See [Staff preview](/en/stays?id=staff-preview-see-the-app-as-a-guest) |
+
+!> **Staff preview: always off for real guests** When **Staff preview** is on, the stay is treated as a team test. The guest's booking requests and desk messages arrive marked *[Preview]*: the front desk gets **no email**, the bookings take **no spots**, and the requests are easily mistaken for tests and deleted. Check that it is off before you press **Publish**.
 
 ## Send the private link
 
@@ -58,6 +60,14 @@ The stay has **Staff preview** switched on (in **Stay Details**). Everything it 
 - Messages to the desk appear in **Desk Messages** as *[Preview] …* and send no email.
 
 !> **Keep the link within the team** Anyone with the Team Preview link can open the app and send preview requests. If someone leaves the team, ask [support](/en/support) to change the link. To create another preview stay (for example, to see the screen before arrival), make a normal stay with the dates you need and switch **Staff preview** on.
+
+### If Staff preview was switched on for a guest
+
+1. Open the guest's stay, switch **Staff preview** off and press **Update**. From now on their requests and messages arrive as normal, with an email to the front desk.
+2. Go to **Exc. Bookings** and **Desk Messages** and look for *[Preview]* items with the guest's name. They are **real requests**: approve, decline or reply as usual, and do not move them to the Trash.
+3. Before you approve one of those bookings, check that there is still room: it did not take a spot when it was made.
+
+?> **Quick check** On a guest's stay, the **Staff preview** switch is grey (off). Only *Team Preview* and the stays the team creates to test the app have it on.
 
 ## When a guest leaves
 
