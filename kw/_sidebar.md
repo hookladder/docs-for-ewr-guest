@@ -17,3 +17,4 @@
   - [Pwoblèm épi solisyon](/kw/troubleshooting)
   - [Mo pou konnèt](/kw/glossary)
   - [Sipò](/kw/support)
+  - [Léta app-la](/kw/app-status)

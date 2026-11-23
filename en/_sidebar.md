@@ -17,3 +17,4 @@
   - [Problems & solutions](/en/troubleshooting)
   - [Glossary](/en/glossary)
   - [Support](/en/support)
+  - [App Status](/en/app-status)
