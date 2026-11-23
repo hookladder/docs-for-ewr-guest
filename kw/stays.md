@@ -22,7 +22,9 @@ On **Stay** sé vizit yon envité: kilès i yé, ki chanm, épi dat yo. Chak sè
 | Traveling With Agent, Family Foundation Opt-In, Water Sports Waiver Accepted | Envité-a ka ranpli yo lè i fè check-in. Ou sa korijé yo |
 | Housekeeping Frequency, Extra Pillows, Restock Minibar Wine, Special Requests | Sa envité-a vlé pou ménaj chanm-lan. Envité-a ka chanjé yo adan **My Stay**, épi ou ka wè répons yo isi-a. Si ou chanjé yo isi-a, envité-a ka wè chanjman ou. Sé menm enfòmasyon-an |
 | Upgrade Interest Note | I ka ranpli lè on envité montwé i enmé on upgrade |
-| **Staff preview** | Sèlman pou sèjou tès ékip-la ka sèvi. Gadé [Staff preview](/kw/stays?id=staff-preview-wè-app-la-kon-on-envité) |
+| **Staff preview** | **Kité'y étenn pou tout envité.** Sèlman pou sèjou tès ékip-la, kon *Team Preview*. Gadé [Staff preview](/kw/stays?id=staff-preview-wè-app-la-kon-on-envité) |
+
+!> **Staff preview: toujou étenn pou vré envité** Lè **Staff preview** limen, sèjou-a sé on tès ékip-la. Dimann booking épi mésaj envité-a ka wivé mawké *[Preview]*: desk-la pa ka wisivwè **pyès imél**, booking yo pa ka pwan **pyès plas**, épi moun sa pwan yo pou tès épi éfasé yo. Gadé si i étenn avan ou pézé **Publish**.
 
 ## Voyé lyen prive-a
 
@@ -58,6 +60,14 @@ Sèjou-a ni **Staff preview** limen (adan **Stay Details**). Tout sa i ka fè ka
 - Mésaj pou desk-la ka paèt adan **Desk Messages** kon *[Preview] …* épi yo pa ka voyé imél.
 
 !> **Kenbé lyen-an andidan ékip-la** Nenpòt moun ki ni lyen Team Preview-la sa ouvè app-la épi voyé dimann preview. Si on moun ka kité ékip-la, mandé [sipò](/kw/support) chanjé lyen-an. Pou fè on lòt sèjou preview (pa égzanp, pou wè ékwan avan envité-a wivé), fè on sèjou nòmal ak dat ou bizwen épi limen **Staff preview**.
+
+### Si Staff preview té limen pou on envité
+
+1. Ouvè sèjou envité-a, étenn **Staff preview** épi pézé **Update**. Dépi kounyé-a, dimann épi mésaj li ka wivé nòmal, ak on imél pou desk-la.
+2. Alé adan **Exc. Bookings** épi **Desk Messages** épi chèché bagay *[Preview]* ki ni non envité-a. Sé **vré dimann**: aksepté, wifizé oben wéponn kon dabitid, épi pa mété yo an Trash.
+3. Avan ou aksepté yonn adan booking sa yo, gadé si ni plas toujou: i pa té pwan plas lè yo fè'y.
+
+?> **Ti vérifikasyon** Asou sèjou on envité, switch **Staff preview**-la gwi (étenn). Sé sèlman *Team Preview* épi sèjou ékip-la ka fè pou éséyé app-la ki ni'y limen.
 
 ## Lè on envité ka pati
 
