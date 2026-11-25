@@ -2,8 +2,8 @@
 
 **Client:** East Winds Resort, St Lucia · **Built by:** Hook & Ladder, inc. (H&L Digital)
 **Status:** Live and in daily use by the resort team (stays from 12 November, guests from the 18 November arrivals); Phase 1 synced to live; staging refreshed from live on 23 November 2026 · **Last updated:** 23 November 2026
-**Staging (this work):** `https://wordpress-1587086-6643085.cloudwaysapps.com` (Cloudways)
-**Production (live):** `https://guest.eastwinds.com` (a separate Cloudways app; Novamira is switched off there)
+**Staging (this work):** `https://wordpress-1039631-6803761.cloudwaysapps.com` (Cloudways app 6803761 on the EWR Server, since 24 November 2026)
+**Production (live):** `https://guest.eastwinds.com` (Cloudways app 6803748 `guestapp` on the EWR Server; Novamira is switched off there)
 **Staff manual:** <https://staffdocs.eastwinds.com> (this repository, `hookladder/docs-for-ewr-guest`)
 
 This document is the starting point for anyone (person or AI agent) picking up the project. It explains why the app exists, how guests and staff use it, how it is built, and the constraints that are easy to miss. It deliberately stays at product and architecture level; implementation detail lives in the docblocks of each file referenced below.
@@ -160,8 +160,10 @@ Notifications for new booking requests and guest messages are emailed to the fro
 ## 6. Operations
 
 ### 6.1 Hosting and security (Cloudways)
-- **Shared server: 2 CPUs and ~4 GB RAM** hosting other applications. Every uncached WordPress boot costs ~1.2 s of CPU, so bursts of admin traffic can saturate it.
-- **PHP 8.3** (rolled back from 8.4 on 23 November 2026 after a reported vulnerability). After the switch the OPcache filled up (0 MB free, 3 out-of-memory restarts, 69% hit rate); it was raised to **256 MB** at server level (95% hit rate). Keep it at 256 MB or more after any PHP version change. There is no persistent object cache (Redis would help the admin and the heavier screens).
+- **Server (since 24 November 2026): EWR Server**, the resort's dedicated Cloudways server (192.241.148.223, New York, 8 GB), shared only with eastwinds.com and its staging. The app was cloned there from HNL S2 (159.203.61.99), where the old live (6637015) and old staging (6643085) are kept as a fallback until they are deleted. Rollback = point the `guest` DNS record back to 159.203.61.99.
+- **DNS and TLS:** `guest.eastwinds.com` is an A record in Cloudflare, proxied, to 192.241.148.223. Cloudflare SSL mode is **Flexible** (Cloudflare → origin over HTTP; no certificate on the app). Recommended: a Let's Encrypt certificate on the app, then **Full (strict)**.
+- **Staging specifics:** Cloudways password protection is off (Novamira and Team Preview need direct access). Novamira and Novamira Pro were activated through the REST API with the H&L application password; the Pro licence must be activated for the new staging domain (memories are a Pro ability).
+- **PHP 8.3** (rolled back from 8.4 on 23 November 2026 after a reported vulnerability). After the switch the OPcache filled up (0 MB free, 3 out-of-memory restarts, 69% hit rate); it was raised to **256 MB** at server level (95% hit rate). The EWR Server had 64 MB and was also raised to 256 MB on 24 November. Keep it at 256 MB or more after any PHP version change. There is no persistent object cache (Redis would help the admin and the heavier screens).
 - **Imunify360 Bot Protection** is active. It blocks automation (the Novamira MCP) from IPs that are not whitelisted, and its JavaScript challenge **drops the private-link path on redirect**, so a guest opening their link for the first time from a non-whitelisted network can land without a session. Recommendation: **disable Bot Protection for this app**, or have Cloudways exclude the app's routes and `/wp-json/mcp/novamira`.
 - **Hardening (27 October 2026):** search engines are discouraged (Settings > Reading, plus `noindex` on every page), sitemaps and the REST users endpoint are off for visitors, security headers are set, and the old `.bak` copies inside the plugin were removed (they were downloadable as source; their content is kept in the non-autoloaded option `ew_backup_bak_files_20261027`).
 - **Login:** WPS Hide Login moves the login to `/903ewr-staff-login/`; signed out, `/wp-login.php` and `/wp-admin` return WordPress's plain "Access denied" (403, from `security.php`), never an app page. By decision (27 October 2026) the team address is published in the manual (`https://guest.eastwinds.com/903ewr-staff-login/`), so the live site must use the same slug. Novamira is unaffected (it authenticates through REST).
@@ -214,7 +216,7 @@ Development happens on staging; Ali deploys with a Cloudways **file** sync (stag
 | No 2FA and no login-attempt limit | The login address is published in the manual, so only passwords and Imunify stop password guessing | Add a login limiter or 2FA before the public launch |
 | Guest email on decline | On stand-by (not discarded) | Reuse the decline-reason text when it comes back |
 | Staging on a temporary Cloudways domain | Private links, and the QR codes East Winds prints in welcome letters, change when the live app opens on `guest.eastwinds.com` | No welcome letters for real guests until launch; then run the launch checklist (6.4) |
-| **Staff preview switched on for real guests** (found on 23 November 2026: 10 of 22 live stays) | Those guests' requests and messages arrive as *[Preview]*, with no email to the front desk and no spots taken | The manual now warns about it (Stays) and explains the fix; switch it off on the live app, by hand or with a migration that leaves only *Team Preview* on |
+| Staff preview switched on for real guests (found on 23 November 2026: 10 of 22 live stays) | Fixed on the live app by 24 November: only *Team Preview* has it on | The manual warns about it (Stays); check it whenever reviewing live data |
 | Explore and Book take about 4 s to generate | Each visit builds 330+ KB of HTML from several JetEngine listings; guest pages are never page-cached | Profile the listings and nested templates; add Redis |
 | *Light Bites* row still in Resort Settings → Dining (1pm–5pm, old PDF) | It is the old name of Island Bites, with different hours | Clear it in Resort Settings or stop rendering it |
 | Media placeholders still in use | Some items share demo photos; the lunch and dinner menus still use placeholders 317 and 320, and the Afternoon Tea menu has no photo | Replace with real photography (menus now have a Featured Image box) |
@@ -251,7 +253,7 @@ The commercial line for V1 is not closed yet; anything outside the V1 rows needs
 | Smart PWA install prompt | **Pending** | PWA WP Router (H&L plugin) |
 | Branded HTML emails | **Later** | Needs a reliable SMTP first; pairs with the V2 in-app replies and the decline email |
 
-**Phase 1 is on the live app** (synced before the 23 November refresh; its migrations are recorded there). **Pending file sync** (Cloudways, files only), under `wp-content/plugins/ew-stay-access/includes/`: `shortcodes-extra.php` and `migrations.php` (Island Bites). The first admin page load after the sync runs the migration.
+**Phase 1 and Island Bites are on the live app** (migrations recorded there, including `2026-11-23-island-bites-meal`). Nothing is pending sync as of 24 November 2026.
 
 ---
 
